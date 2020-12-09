@@ -1,0 +1,12 @@
+name: Build extensions/index.html
+
+on: push
+
+jobs:
+  generate_html:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: docker://pandoc/core:2.9
+        with:
+          args: "extensions/index.md > extensions/index.html"
+          
