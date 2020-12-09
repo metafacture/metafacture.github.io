@@ -12,6 +12,23 @@ There are different ways to install extensions for VS Code / Codium.
 2. The second way to install is to download a VSIX file and install from it. You can download the latest version of the VSIX files for [Fix](https://wwww.metafacture.org/extensions/fix-0.0.1.vsix) and [Flux](https://wwww.metafacture.org/extensions/flux-0.0.1.vsix). Use the **Install from VSIX** command in the Extensions view drop-down menu and point to the downloaded VSIX.
 
 ## Tutorials
+
 ### Flux
 
+After installing the extension to VS Code / Codium open a Flux file for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill-to-oersi.flux). This should look like this in the IDE:
+
+Screenshot01
+
+If you delete for example a necessary bracket you will see in the Output section that the extention detects problems with the Flux file.
+
+Screenshot02
+
+
 ### Fix
+
+[Fix example](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill.fix)
+
+
+## Code
+
+If you are interested in the extensions' code, visit [Fix Repository](https://github.com/metafacture/metafacture-fix) and [Flux Repository](https://github.com/metafacture/metafacture-flux).
