@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: docker://pandoc/core:2.9
         with:
-          args: "extensions/index.md > extensions/index.html"
+          args: --output=extensions/index.html extensions/index.md
