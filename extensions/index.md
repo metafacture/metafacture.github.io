@@ -15,18 +15,26 @@ There are different ways to install extensions for VS Code / Codium.
 
 ### Flux
 
-After installing the extension to VS Code / Codium open a Flux file for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill-to-oersi.flux). This should look like this in the IDE:
+After installing the extension to VS Code / Codium open a Flux file for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill-to-oersi.flux). This should look like:
 
-Screenshot01
+![digill-to-oersi_flux](img/digill-to-oersi_flux.JPG)
 
-If you delete for example a necessary bracket you will see in the Output section that the extention detects problems with the Flux file.
+If you delete for example a necessary bracket you will see in the Problems section that the extention detects problems with the Flux file.
 
-Screenshot02
+![digill-to-oersi_flux_problem](img/digill-to-oersi_flux_problem.JPG)
 
 
 ### Fix
 
-[Fix example](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill.fix)
+After installing the extension to VS Code / Codium open a Flux file for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill.fix). This should look like this:
+
+![digill-fix](img/digill_fix.JPG)
+
+If you remove a closing end you will see in the Problems section that the extention detects pthe missing `end`.
+
+![digill-fix-problem](img/digill_fix_problem.JPG)
+
+
 
 
 ## Code
