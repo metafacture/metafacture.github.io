@@ -23,7 +23,6 @@ If you delete for example a necessary bracket you will see in the Problems secti
 
 ![digill-to-oersi_flux_problem](img/digill-to-oersi_flux_problem.JPG)
 
-
 ### Fix
 
 After installing the extension to VS Code / Codium open a Flux file for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill.fix). This should look like this:
@@ -33,9 +32,6 @@ After installing the extension to VS Code / Codium open a Flux file for example 
 If you remove a closing end you will see in the Problems section that the extention detects pthe missing `end`.
 
 ![digill-fix-problem](img/digill_fix_problem.JPG)
-
-
-
 
 ## Code
 
