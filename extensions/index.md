@@ -4,7 +4,7 @@
 
 ## Overview
 Here you will find different extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. Both extensions are aiming to support working with Fix and Flux by syntax highlighting, simple auto completion and validation of the Flux/Fix language.
-In the future there could be extensions and plugins for other IDEs than VS Code / Codium based on the Language Server Protocol.
+As extensions are based on the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/), extensions and plugins for other IDEs than VS Code / Codium can easily be added in the future.
 
 ## Setup an extension
 There are different ways to install extensions for VS Code / Codium.
