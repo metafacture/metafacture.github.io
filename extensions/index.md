@@ -1,6 +1,6 @@
-<img src="img/metafacture.png" alt="Metafacture" style="max-width:100%"/>
+% Metafacture Extensions
 
-# Extensions
+<img src="img/metafacture.png" alt="Metafacture" style="max-width:100%"/>
 
 ## Overview
 Here you will find different extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. Both extensions are aiming to support working with Fix and Flux by syntax highlighting, simple auto completion and validation of the Flux/Fix language.

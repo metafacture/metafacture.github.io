@@ -11,7 +11,11 @@ jobs:
       - name: Generate extensions/index.html
         uses: docker://pandoc/core:2.9
         with:
-          args: --output=extensions/index.html extensions/index.md
+          args: |>
+            --standalone
+            --output=extensions/index.html
+            --css style.css
+            extensions/index.md
       - name: Commit extensions/index.html
         uses: EndBug/add-and-commit@v5
         with:
