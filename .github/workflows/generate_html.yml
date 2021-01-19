@@ -8,16 +8,14 @@ jobs:
     steps:
       - name: Get repo
         uses: actions/checkout@v2
-      - name: Change directory
-        run: cd extensions
       - name: Generate extensions/index.html
         uses: docker://pandoc/core:2.9
         with:
-          args: |
-            --output=index.html
-            --css=github-pandoc.css
+          args: >
+            --output=extensions/index.html
+            --css=extensions/github-pandoc.css
             --standalone
-            index.md
+            extensions/index.md
       - name: Commit extensions/index.html
         uses: EndBug/add-and-commit@v5
         with:
