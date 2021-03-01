@@ -13,7 +13,7 @@ jobs:
         with:
           args: >
             --output=extensions/index.html
-            --css=extensions/github-pandoc.css
+            --css=github-pandoc.css
             --standalone
             extensions/index.md
       - name: Commit extensions/index.html
