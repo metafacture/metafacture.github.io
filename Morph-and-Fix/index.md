@@ -1107,6 +1107,8 @@ TODO: fill out this part.
 
 `java` TODO..
 
+_________
+
 #### count
 
 [count](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Count.java) counts literals and gives the actual counted number with each literal. To give back only the last counted number see the cookbook. (TODO)
@@ -1165,61 +1167,1065 @@ _________
 
 The following passage introduces the different literal functions, which filter literal values based on certain rules.
 
- As all literal function filter functions are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`.
+ As all literal function filter functions are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`. For more see [here](#transform)
 
-__whitelist__
+ _________
 
-Filtering based on a whitelist. Allowed values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup). 
+#### whitelist
+
+[whitelist](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/WhiteList.java) filters based on a listed values that are allowed. Allowed values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup). 
+
+TODO: How does this work in FIX
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <whitelist>
+    <entry name="allowed"/>
+    <entry name="accepted"/>
+  </whitelist>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: allowed, litA: accepted}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+TODO: describe example in FIX
+
+```
+{litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  whitelist( ... TODO)
+end
+```
+
+__Ausgabe__
+
+```
+{litA: allowed, litA: accepted}
+```
+
+</details>
+
+ _________
+
+#### blacklist
 
 
+[blacklist](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/BlackList.java) filters based on a listed values that are blocked. Blocked values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup).
 
-__blacklist__
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
 
-__contains / not-contains__
+```
+{litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
+```
 
-Filtering based on containing.
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <blacklist>
+    <entry name="not allowed"/>
+    <entry name="not permitted"/>
+    <entry name="forbidden"/>
+  </blacklist>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: allowed, litA: accepted}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+TODO: describe example in FIX
+
+```
+{litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  blacklist( ... TODO)
+end
+```
+
+__Ausgabe__
+
+```
+{litA: allowed, litA: accepted}
+```
+
+</details>
+
+ _________
+
+#### contains / not-contains
+
+[contains](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Contains.java) filters values when they have a certain substring stated in `string`.
+
+TODO: Do they work with regex? Are they case-sensitive?
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <contains  string="hamster"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: hamster in the house}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  contains(string: "hamster")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: hamster in the house}
+```
+
+</details>
+
+[not-contains](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/NotContains.java) blocks values when they have a certain substring stated in `string`.
+
+TODO: Do they work with regex? Are they case-sensitive?
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <not-contains  string="hamster"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: turtle in the house}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  not-contains(string: "hamster")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: turtle in the house}
+```
+
+</details>
+
+ _________
 
 __equals / not-equals__
 
-Filtering based on equality.
+[equals](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Equals.java) passes trough values that are equal to the stated (`string`).
 
-__occurence__
+TODO: Do they work with regex? Are they case-sensitive?
 
-filtering based on occurrence.
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
 
-__regexp__
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
 
-Regexp matching. Returns first occurrence of a pattern. The pattern is a Java regex Pattern (see http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html).
+__Morph-Definition__
 
-__unique__
+```xml
+<data source="litA">
+  <not-contains  string="hamster"/>
+</data>
+```
 
-__buffer__
+__Ausgabe__
+
+```
+{litA: turtle in the house}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster in the house, litA: turtle in the house}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  not-contains(string: "hamster")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: turtle in the house}
+```
+
+</details>
+
+ _________
+
+#### occurence
+
+[occurence](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Occurrence.java) filters based on how often a literal appears and passes the defined occurences on.
+
+This can be defined in the `only` attributes. Additionally you can use `moreThan [n]` and `lessTan [n]` to specify a specific number of occurences.
+
+- `only="moreThan [n]"` sends literals if they occure n+x times. But it cut the appearences before it reaches n.
+- `only="lessThan [n]"` sends literals that appear up to n times.
+- `only` without additional filter sends literals if they occure exactly n times and sends the instance at position n.
+
+TODO: Specify if `lessThan` blocks the occurences  \< n literals if they have more than n instances in total.
+
+Tip: You can use two occurence filters after each other to send only a certain part of occurences. First: <occurrence only="moreThan n"/> and then <occurrence only="lessThan m"/>.
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly, litA: cat}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <occurence  only="2"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: turtle}
+```
 
 
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <occurence  only="moreThan 2"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: butterfly, litA: cat}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly, litA: cat}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  occurence(only: "2")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: turtle}
+```The following paragraphs briefly introduce the different collectors available. 
+
+__Ausgabe__
+
+```
+{litA: butterfly, litA: cat}
+```
+
+</details>
+
+ _________
+
+#### regexp
+
+[regexp](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Regexp.java) filters values based on matching them with regular expressions specified in `match`. It returns the first occurrence of a pattern. The pattern is a Java regex Pattern (see http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html). Additinally it can transform the matched pattern defined in `format`. This also supports capture groups which should be state in `format` with ${1} (TODO: also could be or $1)
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly, litA: cat}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <regexp  match="t.r"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly}
+```
+
+__Eingabe__
+
+```
+{litA: from  1789  to  1900}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <regexp  match="(\d\d\d\d)  to  (\d\d\d\d)"  format="${1}-${2}"/>
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: 1789-1900}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly, litA: cat}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  regex(match: "t.r")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: hamster, litA: turtle, litA: butterfly}
+```
+
+__Eingabe__
+
+```
+{litA: from  1789  to  1900}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  regexp(match:"(\d\d\d\d)  to  (\d\d\d\d)", format:"${1}-${2}
+end
+```
+
+__Ausgabe__
+
+```
+{litA: butterfly, litA: cat}
+```
+
+</details>
+
+ _________
+
+#### unique
+
+[unique](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Unique.java) filters out duplicate literals. With following attributes the scope and the apperance of the duplicates can be specified:
+
+- `in` specifies if the duplicate should be detected only in the same entity (`entity`) or in the whole record (`record`, this is by default)
+- `part` defines which parts of a literal muss be equal to count as a duplicate: `name`, `value` (default) or `name-value`
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: hamster, litA: hamster}
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <unique />
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: hamster}
+```
+
+__Eingabe__
+
+```
+{litA: wertA, litA: wertB, litA: wertA, litB: wertA }
+```
+
+__Morph-Definition__
+
+```xml
+<data source="litA">
+  <unique part="name-value" />
+</data>
+```
+
+__Ausgabe__
+
+```
+{litA: wertA, litA: wertB, litB: wertA}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: hamster, litA: hamster}
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  unique()
+end
+```
+
+__Ausgabe__
+
+```
+{litA: hamster}
+```
+
+__Eingabe__
+
+```
+{litA: wertA, litA: wertB, litA: wertA, litB: wertA }
+```
+
+__FIX-Definition__
+
+```
+do map("litA")
+  unique(part: "name-value")
+end
+```
+
+__Ausgabe__
+
+```
+{litA: wertA, litA: wertB, litB: wertA}
+```
+
+</details>
+
+ _________
+
+### Other
+
+Some function do not fit in the filter/transformation divide.
+
+#### buffer
+
+[buffer](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Buffer.java) withholds literal until the `flushWith`-condition is met. For further details concerning `flushWith" [see](#process-controll).
+
+TODO: https://swissbib.gitlab.io/metamorph-doku/literale/filter/ states a bug concerning the buffer. Examples should be added.
+
+#### add_field (only FIX)
+
+[add_field](https://github.com/metafacture/metafacture-fix/blob/13dad3799d1ba91338f27161da2391b209302abb/org.metafacture.fix/src/main/java/org/metafacture/metamorph/FixFunction.java#L42) creates a field without corresponding key in the source data.
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{litA: hamster, litA: hamster, litA: hamster}
+```
+
+__FIX-Definition__
+
+```
+add_field("type", "learningRessource")
+```
+
+__Ausgabe__
+
+```
+{type: learningRessource}
+```
+
+</details>
+
+ _________
 
 ### Data lookup
 
-__maps__
+A certain group of functions takes a map/dictionary as argument for filter or transform literals: `<lookup>`, `<whitelist>`, `<blacklist>` etc.
+This can be done in three different ways:
+- in the function
+- refrencing to a map in the morph
+- refrencing to a map/database outside the morph  
 
-__javamap__
+In this section the usage of such maps will be explained. We start with a simple example of data lookup.
 
-__filemap__
+#### Local Lookup
 
-__restmap__
+Take for instance an operation in which you want to replace values according to a lookup table: Value 'A' maps to 'print', 'B' maps to 'audiovisual' an so forth. This is accomplished by the `<lookup>` function. The lookup table is defined inside the `<lookup>` tag. The following code snippet depicts this situation.
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+
+```xml
+<data source="002@.0" name="dcterms:format">
+  <substring start="0" end="1" />
+  <lookup>
+    <entry name="A" value="print" />
+    <entry name="B" value="audiovisual" />
+    <entry name="O" value="online" />
+  </lookup>
+</data>	
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+```
+do map("002@.0", "dcterms:format")
+  substring(start:"0", end="1")
+  lookup(
+    "A": "print",
+    "B": "audiovisual",
+    "C": "online"
+  )
+end
+```
+</details>
+
+_________
+
+#### map
+
+The same lookup tables may used in different places in a Metamorph definition. To enable reuse, a map/dictionary can be defined separately from the respective lookup function. 
+In the following listing the `<lookup>` function refers to the table using the name _material_.
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+```xml
+<data source="litA">
+  <lookup in="material">
+</data>
+```
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+```
+do map ("litA")
+  lookup(in:"material")
+end
+```
+
+</details>
+
+
+To define a map, there are different options. All maps that should and can be used in the hole morph need to be stored in a separate `maps` bracket.
+TODO: How can this be used in FIX?
+
+With the `<map>` tag the contents of the map can be defined right away in the Metamorph definition.
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+
+```xml
+<maps>
+  <map name="material">
+    <entry name="A" value="print" />
+    <entry name="B" value="audiovisual" />
+    <entry name="O" value="online" />
+  </map>
+</maps>
+```
+</details>
+
+TODO: How to do this in FIX?
+
+_________
+
+##### filemap
+
+filemap allows to use mappings stored in a separate text file. Each row then represents a key-value-pair.
+Attributes:
+- `name` gives the mapping a name (always needed)
+- `files` states the path to the file, if multiple separated by comma (always needed)
+- `separator` states the sign to differentiate between key and value in a text file (standard: tab: \t) 
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+
+```xml
+<maps>
+  <filemap name="map1" files="maps/MARC-country-codes.txt" separator="\t"/>
+</maps>
+```
+
+</details>
+
+TODO: How to do this in FIX?
+
+_________
+
+##### javamap
+
+TODO: Better description and how to 
+
+javamap uses a java class, which implements *java.util.Map* (link?)
+
+Attributes:
+- `name`  gives the mapping a name (always needed)
+- `class` class name with full path (always needed)
+- all additional attributes are interpreted as parameters for the java class
+
+The situation might arise that the data cannot be hard-coded in xml/text etc; or at least hard-coding it would be very inconvenient. Imagine we want to resolve author ids (> 5 Million) to author names: Putting all the id-name mappings into the Metamorph definition file or text file is certainly _not_ desirable.
+To address this issue, Metamorph allows you to load any class which implements the `Map` interface.
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+
+```xml
+<maps>
+  <javamap name="map-name" class="org.mydomain.MyMap" parameter1="xy" />
+</maps>
+```
+ 
+</details>
+
+
+`Map`s can also be added to Metamorph programmatically in Java:
+
+```java
+//create a Map. Any object implementing Map<String, String> will do
+final Map<String, String> map = new HashMap<String, String>();
+map.put("one key", "first String");
+map.put("another key", "another String");
+
+//tell metamorph to use it during lookup operations
+metamorph.putMap("name of map", map);
+```
+
+__Important:__ If your `Map` implementation allocates resources which need to be closed eventually (database connections etc.), let it implement the `java.io.Closeable` interface. Metamorph keeps track of all `Closable`s and will call the `close()` method upon `closeStream()`.
+
+_________
+
+#### restmap
+
+[restmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/RestMap.java) requests a REST-API
+
+Attributes:
+- `name`  gives the mapping a name (always needed)
+- `url` URL of the REST-API (always needed)
+
+TODO: example and FIX
+
+_________
 
 __sqlmap__
 
+ [sqlmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/SqlMap.java) queries a SQL database
+ 
+Attributes:
+- `name`  gives the mapping a name (always needed)
+- `host` host name (default: localhost)
+- `login` user name (always needed)
+- `password` (always needed)
+- `database` name of the database (always nedded)
+- `query` (always needed)
+- `driver` database driver (default: com.mysql.jdbc.Driver)
+
+
+TODO: example and FIX
+
+_________
+
 __jndisqlmap__
+
+ [jndisqlmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/JndiSqlMap.java) requests a SQL databse via [JNDI](https://de.wikipedia.org/wiki/Java_Naming_and_Directory_Interface)
+
+Attributes:
+- `name`  gives the mapping a name (always needed)
+- `datasource` (always needed)
+- - `query` (always needed)
+
+TODO: example and FIX
+
+_________
 
 ## Collectors
 
+In the case that an output depends on the values from more then one literal, we need to collect literals.
+
+Collectors can aggregate, filter and combine multiple different literals. Collectors are defined under the <rules> tag, just as <data> tags. <data> tags are be put inside the respective collectors to indicate which literals are to be collected.
+Allmost all collector can be:
+-  controlled concerning the time and way of the emission with [process controll attributes](#process-controll)
+-  can be controlled with [if-conditionals](#if-conditionals) (not supported with FIX)
+-  can be nested except `entity`
+-  to all types of collectors post-processing steps can be added by using the `postprocess` tag (FIX?)
+
+TODO: specify for FIX
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+
+__Morph-Definition__
+
+```xml
+<combine name="neu" value="${lastName}, ${firstName}">
+  <data source="field1" name="firstName"/>
+  <data source="field2" name="lastName"/>
+  <postprocess>
+    <trim/>
+    <case to="upper"/>
+  </postprocess>
+</combine>
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+
+__FIX-Definition__
+
+```
+do combine ("neu", "${lastName}, ${firstName}")
+  map("field1", "firstName")
+  map("field2", "lastName")
+  do postprocess
+    trim()
+    case(to: "upper")
+  end
+end
+```
+
+</details>
+
+The following paragraphs briefly introduce the different collectors available. 
+
 ### List of collectors
 
-__combine__
+#### combine
 
-__concat__
+ [combine](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Combine.java) puts together different literals following a certain value template. Following values overwrite previes values of the same field.
+ 
+ Attributes:
+- `name` (always needed): name of the new field
+- `value` (always needed): Template. Values can be added with ${fieldname} (TODO: FIX, ohne geschwiffene Klammer?)
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
 
-__entity__
+
+There are several important points to note: By default <combine> waits until at least one value from each `<data>` tag is received. If the collection is not complete on record end, no output is generated. After each output, the state of `<combine>` is reset. If one `<data>` tag receives literals repeatedly before the collection is complete only the last value will be retained.
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{028A.a: Shklar, 028A.d: Judtih N.}
+```
+
+__Morph-Definition__
+
+```xml
+<combine name="gnd:variantNameForThePerson" value="${surname}, ${forename}">
+  <data source="028A.a" name="surname" />
+  <data source="028A.d" name="forename"/>
+</combine>
+```
+
+__Ausgabe__
+
+```
+{gnd:variantNameForThePerson: Shklar, Judith N.}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{028A.a: Shklar, 028A.d: Judtih N.}
+```
+
+__FIX-Definition__
+
+```
+do combine("gnd:variantNameForThePerson", "${surname}, ${forename}")
+  map("028A.a", "surname")
+  map("028A.d", "forename")
+end
+```
+
+__Ausgabe__
+
+```
+{028A.a: Shklar, 028A.d: Judtih N.}
+```
+
+</details>
+
+ _________
+
+
+#### concat
+
+[concat](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Concat.java) collects all received values and concatenates them on record end by default.
+
+Attributes:
+- `name` (always needed): name of the new field
+- `delimiter` sign to separate values (default: "")
+- `prefix`
+- `postfix`
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+Note: The values are concatenated in the order they appear in the input and not in the order of the data sources.
+
+TODO: Do the attributes in FIX need names?
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{data1: a, data2: b, data2: c, data1: d}
+```
+
+__Morph-Definition__
+
+```xml
+<concat delimiter=", " name="concat" prefix="{" postfix="}">
+   <data source="data1" />
+   <data source="data2" />
+</concat>
+```
+
+__Ausgabe__
+
+```
+{concat: \{a,b,c,d\}}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{data1: a, data2: b, data2: c, data1: d}
+```
+
+__FIX-Definition__
+
+```
+do concat(delimiter: ",", name: "concat", prefix: "{", postfix: "}")
+   map("data1")
+   map("data2")
+end
+```
+
+__Ausgabe__
+
+```
+{concat: \{a,b,c,d\}}
+```
+
+</details>
+
+ _________
+
+
+#### entity
+
+[entity](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Entity.java) creates a new entity or subentity with the collected 
+literals
+
+Attributes:
+- `name` (always needed): name of the new entity
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__Eingabe__
+
+```
+{ farbeA: rot, farbeB: grün, farbeC: blau, farbeD: magenta }
+```
+
+__Morph-Definition__
+
+```xml
+<entity name="rgb">
+  <data source="farbeA"/>
+  <data source="farbeB"/>
+  <data source="farbeC"/>
+</entity>
+```
+
+__Ausgabe__
+
+```
+{ rgb { farbeA: rot, farbeB: grün, farbeC: blau }}
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__Eingabe__
+
+```
+{ farbeA: rot, farbeB: grün, farbeC: blau, farbeD: magenta }
+```
+
+__FIX-Definition__
+
+```
+do entity ("rgb")
+  map("farbeA")
+  map("farbeB")
+  map("farbeC")
+end
+```
+
+__Ausgabe__
+
+```
+{ rgb { farbeA: rot, farbeB: grün, farbeC: blau }}
+```
+
+</details>
+
+ _________
 
 __square__
 
@@ -1237,7 +2243,7 @@ __all, any, none__
 
 ### Process controll
 
-__flush__
+__flushWith__
 
 __reset__
 
