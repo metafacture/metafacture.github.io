@@ -48,6 +48,8 @@ The functionalities can be differentiated between those that operate straight wi
 The simplest way to work with literals is to read them and then pass them on. This is done by the `data`-function.
 It always needs a `source` attribute that tells the function which literal should be read.
 
+Note: Wildcards are allowed in the `source` name. You also can use variants with square brackets `source="bee[rt]"` You can use multiple names as source by separating the names with `|` e.g. `source="beer|coffee"`
+
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -2036,7 +2038,9 @@ The following paragraphs briefly introduce the different collectors available.
  Attributes:
 - `name` (always needed): name of the new field
 - `value` (always needed): Template. Values can be added with ${fieldname} (TODO: FIX, ohne geschwiffene Klammer?)
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith` (default: if complete)
+- `reset`, (default: false)
+- `sameEntity`, (default: false) 
 
 
 There are several important points to note: By default <combine> waits until at least one value from each `<data>` tag is received. If the collection is not complete on record end, no output is generated. After each output, the state of `<combine>` is reset. If one `<data>` tag receives literals repeatedly before the collection is complete only the last value will be retained.
@@ -2103,7 +2107,9 @@ Attributes:
 - `delimiter` sign to separate values (default: "")
 - `prefix`
 - `postfix`
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: "record")
+- `reset` (default: true)
+- `sameEntity` (default: false)
 
 
 Note: The values are concatenated in the order they appear in the input and not in the order of the data sources.
@@ -2169,7 +2175,9 @@ __output__
 
 Attributes:
 - `name` (always needed): name of the new entity
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: if complete)
+- `reset` (default: false)
+- `sameEntity` (default: false)
 
 Note: An `entity` can nest other collectors but an `entity` can only be nested in another `entity`.
 
@@ -2235,7 +2243,8 @@ __output__
 Attributes:
 - `name` (always needed): name of the new literal
 - TODO: `value` ??? value of the new literal, (documentet in swissbib?? is this true?)
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: "record")
+- `reset` (default: "true")
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -2298,7 +2307,9 @@ __output__
 Attributes:
 - `name` (always needed): name of the new literal
 - `increment` (default: 1)
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: "record")
+- `reset` (default: "false")
+- `sameEntity` (default: "false")
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -2361,7 +2372,9 @@ __output__
 Attributes:
 - `name` (always needed): name of the new literal
 - `value` (always needed): value of the new literal
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: if complete)
+- `reset` (default: "false")
+- `sameEntity` (default: "false")
 
 
 <details>
@@ -2426,8 +2439,8 @@ Attributes:
 - `delimiter` (always needed): string that separates the values in a combination
 - `prefix`
 - `postfix`
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
-
+- `flushWith`  (default: "record")
+- `reset` (default: "true")
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -2493,7 +2506,8 @@ Attributes:
 - `name` (always needed): name of the new literals
 - `separator` (TODO: always needed?): string that separates the values in a combination
 - `minN` sets a minimum of different literals
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: "record")
+
 
 
 <details>
@@ -2556,7 +2570,6 @@ __output__
 Attributes:
 - `name` new name for all literals (optional)
 - `value` new value for all literals (optional)
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
 
 
 TODO: how to do this in FIX? especially postprocessing?
@@ -2633,7 +2646,9 @@ What do they do:
 Attributes:
 - `name` new name for the literal (optional)
 - `value` new value instead of true (optional)
-- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+- `flushWith`  (default: if complete)
+- `reset` (default: "false")
+- `sameEntity` (default: "false")
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -2706,15 +2721,127 @@ __output__
 
 ### Process controll
 
-__flushWith__
+When and how *collectors* provide their results, can be defined by three different parameters: `flushWith`, `reset` and `sameEntity`. All of them are stated as attributes to a collector. At the moment process controll attributes are not supported in FIX. This is due to the change that FIX will not process stream based but record based.
 
-__reset__
+TODO: Specify the process controll for subentities since they do not always work as the parententity.
 
-__sameEntity__
+## default settings `flushWith`, `reset` und `sameEntity`
 
+Collector          |  flushWith       |  reset   |  sameEntity
+------------------ | ---------------- | -------- | ------------
+__`combine`__      | wenn vollständig | `false`  | `false`
+__`concat`__       | `record`         | `true`   | `false`
+__`entity`__       | wenn vollständig | `false`  | `false`
+__`squares`__      | `record`         | `true`   | entfällt
+__`tuples`__       | `record`         | entfällt | entfällt
+__`group`__        | entfällt         | entfällt | entfällt
+__`choose`__       | `record`         | `true`   | `false`
+__`range`__        | `record`         | `false`  | `false`
+__`equalsFilter`__ | wenn vollständig | `false`  | `false`
+__`all`__          | wenn vollständig | `false`  | `false`
+__`any`__          | wenn vollständig | `false`  | `false`
+__`none`__         | wenn vollständig | `false`  | `false`
+
+
+ _________
+#### flushWith
+
+The attribute `flushWith`  triggers output on the occurrence of any literal or entity with is stated as value: `flushWith="[name]"`. Variables in the output pattern which are not yet bound to a value, are replaced with the empty string. Wildcards can be used. Also multiple fields can be named when seperated by `|`.
+
+Use `flushWith="record"` to set the record end as output trigger.
+If flushWith has a certain entity as parameter it outputs at the end of the entity after all literals and subentities that it contains are processed.
+
+Fix does not support `flushWith`.
+
+Note:
+- `combine`, `entity`, `equalsFilter` and the Quantors `all`, `any`, `none` flush by default if all demanded literals are processed once. If not, the collector is not triggert at all.
+- If the explicit or default `flushWith` definition is not met the collector is not triggered and the collected literals will not be processed further.
+- Empty collectors are not processed at all with or without `flushWith`
+- Be careful with Wildcards. TODO: see swissbib warning: https://swissbib.gitlab.io/metamorph-doku/literale/datenfelder/
+
+ _________
+
+#### reset
+
+The attritbute `reset` deletes all collected and processed literals after they are flushed. If `reset="false"` the processed literals will be cached and will be processed agan with *every* ne collected literal again.
+
+Note:
+ - `entity`, `combine`, `range`, `equalsFilter`, `all`, `any` and `none` are all by default set to `reset="false"`. This can create duplicates especially if you want to create multiple objects as `entity`. Then you have to set `reset="true"` to prevent these duplications of keys.
+ - 
+ _________
+
+#### sameEntity
+
+The attribute `sameEntity` will reset the collector after each entity end if set to true. Thus **processes only collections from the same source entity**. Note:
+- the implenemntation only executes a reset if actually needed and it is independent of the `reset` attribute setting.
+- is the source entity is processed but not all source literals and nested collectors are provided, then the saved literals are deleted and eventually overwritten. Then you need an additional `flushWith` attribute.
+- 
+ _________
 
 ### if conditionals
 
+Collectors output can additionally be controlled with `if`-conditionals if they are flushed or not. At the moment if-conditionals are not supported in FIX.
+A collector can have a single `if`-conditional.
+
+The syntax looks as follows:
+
+
+```xml
+<combine name="output" value="${a}+${b}">
+  <if>
+    <data source="fieldA">
+      <equals string="valueA"/>
+    </data>
+  </if>
+  <data source="fieldA" name="a"/>
+  <data source="fieldB" name="b"/>
+</combine>
+```
+
+In this scenario only if fieldA has valueA the collector will be processed.
+
+Note:
+ - `if`-conditionals support all filter functions (see example above)
+ - also all quantifiers (`all`, `any` and `none`)  can be used inside a `if`-conditional. But only one quantifier can be the direct child of a conditional.
+  
+  
+TODO: hint to flushing since expacially with entities these wait for the hole if conditional to be done. Sometime you need to flush the quantifiers and the `if`-conditional earlier. Also sometimes it needs reseting.
+
+e.g. in the following scenario literals are only concated if at least on of each source literal exists:
+
+```xml
+<concat name="output">
+  <if>
+    <all>
+      <data source="fieldA"/>
+      <data source="fieldB"/>
+    </all>
+  </if>
+  <data source="fieldA" name="a"/>
+  <data source="fieldB" name="b"/>
+</combine>
+```
+
+Also note that you are able to nest the quantifiers so create complex conditionals.
+
+e.g. the following scenarion only combines literals if the fieldA has valueA and fieldC does not exist in the record.
+
+```xml
+<concat name="output">
+  <if>
+    <all>
+      <data source="fieldA">
+        <equals string="valueA"/>
+      </data>
+      <none>
+        <data source="fieldC"/>
+      </none>
+    </all>
+  </if>
+  <data source="fieldA" name="a"/>
+  <data source="fieldB" name="b"/>
+</combine>
+```
 
 ## Modularise
 
