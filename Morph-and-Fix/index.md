@@ -51,7 +51,7 @@ It always needs a `source` attribute that tells the function which literal shoul
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -63,7 +63,7 @@ __Morph-Definition__
 <data source="litA" />
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: Alf}
@@ -74,7 +74,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -85,7 +85,7 @@ __FIX-Definition__
 ```
 map ("litA")
 ```
-__Ausgabe__
+__output__
 
 ```
 {litA: Alf}
@@ -97,7 +97,7 @@ It also can have a `name` attribute to rename the key.
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -109,7 +109,7 @@ __Morph-Definition__
 <data source="litA" name="Alien" />
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {Alien: Alf}
@@ -119,7 +119,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -131,7 +131,7 @@ __FIX-Definition__
 map ("litA", "Alien")
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {Alien: Alf}
@@ -195,7 +195,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -209,7 +209,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: Hallo, Alf!}
@@ -219,7 +219,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -233,7 +233,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: Hallo, Alf!}
@@ -249,7 +249,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -263,7 +263,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: cat}
@@ -273,7 +273,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Alf}
@@ -287,7 +287,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: cat}
@@ -308,7 +308,7 @@ With attributes `format`, `timezone` and `language` you can create individual fo
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {}
@@ -322,7 +322,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {zeitstempel: 2018-08-24 17\:59\:18}
@@ -332,7 +332,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {}
@@ -348,7 +348,7 @@ do map("_id_")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {zeitstempel: 2018-08-24 17\:59\:18}
@@ -365,7 +365,7 @@ If you set the `end="0"` the remaining string will be provided.
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: metamorph}
@@ -379,7 +379,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: amor}
@@ -389,7 +389,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: metamorph}
@@ -403,7 +403,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: amor}
@@ -420,7 +420,7 @@ Not matching values will be passed on without changes.
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: abcde, litA: fghij}
@@ -434,7 +434,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: XbXdX, litA: fghij}
@@ -444,7 +444,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: abcde, litA: fghij}
@@ -458,7 +458,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: XbXdX, litA: fghij}
@@ -470,7 +470,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: eins, litA: zwei, litA: drei, litA: vier, litA: fünf}
@@ -489,7 +489,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: 1, litA: 2, litA: 3, litA: 4, litA: fünf}
@@ -499,7 +499,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: eins, litA: zwei, litA: drei, litA: vier, litA: fünf}
@@ -515,7 +515,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: 1, litA: 2, litA: 3, litA: 4, litA: fünf}
@@ -533,7 +533,7 @@ TODO: Does `lookup` pass trough values that do not map even without `default`?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {kanton: Waadt, kanton: Wallis, kanton: Jura, kanton: Genf}
@@ -551,7 +551,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {hauptort: Lausanne, hauptort: Sion, hauptort: Delémont, hauptort: nicht bekannt}
@@ -561,7 +561,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {kanton: Waadt, kanton: Wallis, kanton: Jura, kanton: Genf}
@@ -577,7 +577,7 @@ do map("kanton", "hauptort")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {hauptort: Lausanne, hauptort: Sion, hauptort: Delémont, hauptort: nicht bekannt}
@@ -595,7 +595,7 @@ TODO: What is the `language` attribute doing?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {buch: kitabı}
@@ -609,7 +609,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {buch: KİTABI}
@@ -619,7 +619,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {buch: kitabı}
@@ -634,7 +634,7 @@ do map("buch")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {buch: KİTABI}
@@ -650,7 +650,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: '  luftig   '}
@@ -664,7 +664,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: luftig}
@@ -674,7 +674,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: '  luftig   '}
@@ -689,7 +689,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: luftig}
@@ -706,7 +706,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: ä }
@@ -720,7 +720,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: ä}
@@ -730,7 +730,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: ä }
@@ -745,7 +745,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: ä}
@@ -769,7 +769,7 @@ TODO: swissbib report a bug: removeLeadingZeros="true" entfernte in unseren Test
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {heute: 2018-08-26 }
@@ -784,7 +784,7 @@ __Morph-Definition__
 ```
 TODO: is the upper case with MM intentional?
 
-__Ausgabe__
+__output__
 
 ```
 {heute:Sonntag\, 26. August 2018}
@@ -794,7 +794,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {heute: 2018-08-26 }
@@ -809,7 +809,7 @@ do map("heute")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {heute:Sonntag\, 26. August 2018}
@@ -827,7 +827,7 @@ TODO: Are values that are not split passed on?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Oahu,Hawaii,Maui}
@@ -841,7 +841,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: Oahu, litA: Hawauu, litA: Maui}
@@ -851,7 +851,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: Oahu,Hawaii,Maui}
@@ -866,7 +866,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: Oahu, litA: Hawauu, litA: Maui}
@@ -883,7 +883,7 @@ It is also possible to control the ISBN checkDigit with the attribute `verifyCec
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {isbn: 978-3-89401-810}
@@ -897,7 +897,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {isbn: ungültig}
@@ -907,7 +907,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {isbn: 978-3-89401-810}
@@ -921,7 +921,7 @@ do map("isbn")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {isbn: ungültig}
@@ -937,7 +937,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {author: Judith Shklar}
@@ -952,7 +952,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {search: https://lobid.org/resources/search?q=Judith+Shklar}
@@ -962,7 +962,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {author: Judith Shklar}
@@ -977,7 +977,7 @@ do map("author", "search")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {search: https://lobid.org/resources/search?q=Judith+Shklar}
@@ -993,7 +993,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {article: my special day}
@@ -1008,7 +1008,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {anchor: <a href="https\://example.com/my+special+day">My very very special day</a>}
@@ -1018,7 +1018,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {article: my special day}
@@ -1033,7 +1033,7 @@ do map("article", "anchor")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {anchor: <a href="https\://example.com/my+special+day">My very very special day</a>}
@@ -1049,10 +1049,10 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
-{litA: wertB}
+{litA: valueB}
 ```
 
 __Morph-Definition__
@@ -1063,20 +1063,20 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
-{wertB: litA}
+{valueB: litA}
 ```
 
 </details>
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
-{litA: wertB}
+{litA: valueB}
 ```
 
 __FIX-Definition__
@@ -1087,10 +1087,10 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
-{wertB: litA}
+{valueB: litA}
 ```
 
 </details>
@@ -1115,10 +1115,10 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
-{litA: wert1, litA: wert2}
+{litA: value1, litA: value2}
 ```
 
 __Morph-Definition__
@@ -1129,7 +1129,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: 1, litA: 2}
@@ -1139,10 +1139,10 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
-{litA: wert1, litA: wert2}
+{litA: value1, litA: value2}
 ```
 
 __FIX-Definition__
@@ -1153,7 +1153,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: 1, litA: 2}
@@ -1179,7 +1179,7 @@ TODO: How does this work in FIX
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
@@ -1196,7 +1196,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: allowed, litA: accepted}
@@ -1206,7 +1206,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 TODO: describe example in FIX
 
@@ -1222,7 +1222,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: allowed, litA: accepted}
@@ -1239,7 +1239,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
@@ -1257,7 +1257,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: allowed, litA: accepted}
@@ -1267,7 +1267,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 TODO: describe example in FIX
 
@@ -1283,7 +1283,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: allowed, litA: accepted}
@@ -1301,7 +1301,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1315,7 +1315,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster in the house}
@@ -1325,7 +1325,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1339,7 +1339,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster in the house}
@@ -1353,7 +1353,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1367,7 +1367,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle in the house}
@@ -1377,7 +1377,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1391,7 +1391,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle in the house}
@@ -1409,7 +1409,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1423,7 +1423,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle in the house}
@@ -1433,7 +1433,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster in the house, litA: turtle in the house}
@@ -1447,7 +1447,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle in the house}
@@ -1473,7 +1473,7 @@ Tip: You can use two occurence filters after each other to send only a certain p
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly, litA: cat}
@@ -1487,7 +1487,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle}
@@ -1502,7 +1502,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: butterfly, litA: cat}
@@ -1512,7 +1512,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly, litA: cat}
@@ -1526,13 +1526,13 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: turtle}
 ```The following paragraphs briefly introduce the different collectors available. 
 
-__Ausgabe__
+__output__
 
 ```
 {litA: butterfly, litA: cat}
@@ -1548,7 +1548,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly, litA: cat}
@@ -1562,13 +1562,13 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly}
 ```
 
-__Eingabe__
+__input__
 
 ```
 {litA: from  1789  to  1900}
@@ -1582,7 +1582,7 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: 1789-1900}
@@ -1592,7 +1592,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly, litA: cat}
@@ -1606,13 +1606,13 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster, litA: turtle, litA: butterfly}
 ```
 
-__Eingabe__
+__input__
 
 ```
 {litA: from  1789  to  1900}
@@ -1626,7 +1626,7 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: butterfly, litA: cat}
@@ -1646,7 +1646,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: hamster, litA: hamster}
@@ -1660,16 +1660,16 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster}
 ```
 
-__Eingabe__
+__input__
 
 ```
-{litA: wertA, litA: wertB, litA: wertA, litB: wertA }
+{litA: valueA, litA: valueB, litA: valueA, litB: valueA }
 ```
 
 __Morph-Definition__
@@ -1680,17 +1680,17 @@ __Morph-Definition__
 </data>
 ```
 
-__Ausgabe__
+__output__
 
 ```
-{litA: wertA, litA: wertB, litB: wertA}
+{litA: valueA, litA: valueB, litB: valueA}
 ```
 
 </details>
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: hamster, litA: hamster}
@@ -1704,16 +1704,16 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {litA: hamster}
 ```
 
-__Eingabe__
+__input__
 
 ```
-{litA: wertA, litA: wertB, litA: wertA, litB: wertA }
+{litA: valueA, litA: valueB, litA: valueA, litB: valueA }
 ```
 
 __FIX-Definition__
@@ -1724,10 +1724,10 @@ do map("litA")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
-{litA: wertA, litA: wertB, litB: wertA}
+{litA: valueA, litA: valueB, litB: valueA}
 ```
 
 </details>
@@ -1750,7 +1750,7 @@ TODO: https://swissbib.gitlab.io/metamorph-doku/literale/filter/ states a bug co
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {litA: hamster, litA: hamster, litA: hamster}
@@ -1762,7 +1762,7 @@ __FIX-Definition__
 add_field("type", "learningRessource")
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {type: learningRessource}
@@ -1970,7 +1970,7 @@ __jndisqlmap__
 Attributes:
 - `name`  gives the mapping a name (always needed)
 - `datasource` (always needed)
-- - `query` (always needed)
+- `query` (always needed)
 
 TODO: example and FIX
 
@@ -2043,7 +2043,7 @@ There are several important points to note: By default <combine> waits until at 
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {028A.a: Shklar, 028A.d: Judtih N.}
@@ -2058,7 +2058,7 @@ __Morph-Definition__
 </combine>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {gnd:variantNameForThePerson: Shklar, Judith N.}
@@ -2068,7 +2068,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {028A.a: Shklar, 028A.d: Judtih N.}
@@ -2083,7 +2083,7 @@ do combine("gnd:variantNameForThePerson", "${surname}, ${forename}")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {028A.a: Shklar, 028A.d: Judtih N.}
@@ -2112,7 +2112,7 @@ TODO: Do the attributes in FIX need names?
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 {data1: a, data2: b, data2: c, data1: d}
@@ -2127,7 +2127,7 @@ __Morph-Definition__
 </concat>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {concat: \{a,b,c,d\}}
@@ -2137,7 +2137,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 {data1: a, data2: b, data2: c, data1: d}
@@ -2152,7 +2152,7 @@ do concat(delimiter: ",", name: "concat", prefix: "{", postfix: "}")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 {concat: \{a,b,c,d\}}
@@ -2165,17 +2165,18 @@ __Ausgabe__
 
 #### entity
 
-[entity](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Entity.java) creates a new entity or subentity with the collected 
-literals
+[entity](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Entity.java) creates a new entity or subentity with the collected literals.
 
 Attributes:
 - `name` (always needed): name of the new entity
 - `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
 
+Note: An `entity` can nest other collectors but an `entity` can only be nested in another `entity`.
+
 
 <details>
   <summary>Example <b>Morph</b></summary>
-__Eingabe__
+__input__
 
 ```
 { farbeA: rot, farbeB: grün, farbeC: blau, farbeD: magenta }
@@ -2191,7 +2192,7 @@ __Morph-Definition__
 </entity>
 ```
 
-__Ausgabe__
+__output__
 
 ```
 { rgb { farbeA: rot, farbeB: grün, farbeC: blau }}
@@ -2201,7 +2202,7 @@ __Ausgabe__
 
 <details>
   <summary>Example <b>FIX</b></summary>
-__Eingabe__
+__input__
 
 ```
 { farbeA: rot, farbeB: grün, farbeC: blau, farbeD: magenta }
@@ -2217,7 +2218,7 @@ do entity ("rgb")
 end
 ```
 
-__Ausgabe__
+__output__
 
 ```
 { rgb { farbeA: rot, farbeB: grün, farbeC: blau }}
@@ -2227,19 +2228,481 @@ __Ausgabe__
 
  _________
 
-__square__
+#### choose
 
-__tuples__
+[choose](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Choose.java) collects all received values and emits the most preferred one on record end. Preference is assigned according to the order the data sources appear within the choose tag.
 
-__group__
+Attributes:
+- `name` (always needed): name of the new literal
+- TODO: `value` ??? value of the new literal, (documentet in swissbib?? is this true?)
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
 
-__choose__
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
 
-__range__
+```
+{ data1: important, data2: not so important }
+```
 
-__equalsFilter__
+__Morph-Definition__
 
-__all, any, none__
+```xml
+<choose name="status">
+   <data source="data1" />
+   <data source="data2" />
+</choose>
+```
+
+__output__
+
+```
+{ status: important }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ data1: important, data2: not so important }
+```
+
+__FIX-Definition__
+
+TODO: specify arguments or attributes
+
+```
+do choose("data")
+  map("data1")
+  map("data2")
+end
+```
+
+__output__
+
+```
+{ status: important }
+```
+
+</details>
+
+ _________
+
+#### range
+
+[range](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Range.java) reads two following literals as intigers, which define the start and endpoint of a numerical series.
+
+Attributes:
+- `name` (always needed): name of the new literal
+- `increment` (default: 1)
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ beginning: 0, end: 10 }
+```
+
+__Morph-Definition__
+
+```xml
+<range name="even number" increment="2">
+  <data source="beginning"/>
+  <data source="end"/>
+</range>
+```
+
+__output__
+
+```
+{ even number: 0, even number: 2, even number: 4, even number: 6, even number: 8, even number: 10 }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ beginning: 0, end: 10 }
+```
+
+__FIX-Definition__
+
+TODO: specify arguments or attributes
+
+```
+do range("even number", infrement: "2")
+  map("beginning")
+  map("end")
+end
+```
+
+__output__
+
+```
+{ even number: 0, even number: 2, even number: 4, even number: 6, even number: 8, even number: 10 }
+```
+
+</details>
+
+ _________
+
+#### equalsFilter
+
+[equalsFilter](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/EqualsFilter.java) returns a new literal, if all incoming values of the literals are identical.
+
+Attributes:
+- `name` (always needed): name of the new literal
+- `value` (always needed): value of the new literal
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ litA: dog, litA: dog, litB: dog }
+```
+
+__Morph-Definition__
+
+```xml
+<equalsFilter name="all the same" value="true!">
+  <data source="litA"/>
+  <data source="litB"/>
+</equalsFilter>
+```
+
+__output__
+
+```
+{ all the same: true }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ litA: dog, litA: dog, litB: dog }
+```
+
+__FIX-Definition__
+
+
+```
+do equalsFilter("all the same", "true!")
+  map("litA")
+  map("litB")
+end
+```
+
+__output__
+
+```
+{ all the same: true }
+```
+
+</details>
+
+ _________
+
+#### square
+
+[square](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Square.java) combines and emits all incoming values to all possible not orderd pairs. The emitted values won't be overwritten.
+
+Attributes:
+- `name` (always needed): name of the new literals
+- `delimiter` (always needed): string that separates the values in a combination
+- `prefix`
+- `postfix`
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ litA: valueA1, litA: valueA2, litB: valueB1, litC: valueC1 }
+```
+
+__Morph-Definition__
+
+```xml
+<square name="pair" delimiter="-" prefix="@" postfix="@">
+  <data source="litA"/>
+  <data source="litB"/>
+  <data source="litC"/>
+</square>
+```
+
+__output__
+
+```
+{ pair: @valueA1-valueC1@, pair: @valueA2-valueC1@, pair: @valueB1-valueC1@, pair: @valueA1-valueB1@, pair: @valueA2-valueB1@, pair: @valueA1-valueA2@ }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ litA: valueA1, litA: valueA2, litB: valueB1, litC: valueC1 }
+```
+
+__FIX-Definition__
+
+
+```
+do square("pair", "-", prefix:"@", postfix:"@")
+  map("litA")
+  map("litB")
+  map("litC")
+end
+```
+
+__output__
+
+```
+{ pair: @valueA1-valueC1@, pair: @valueA2-valueC1@, pair: @valueB1-valueC1@, pair: @valueA1-valueB1@, pair: @valueA2-valueB1@, pair: @valueA1-valueA2@ }
+```
+
+</details>
+
+ _________
+
+
+#### tuples
+
+[tuples](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Tuples.java) creates all possible combination of the *different* literals. With the attribute `minN` you can set a a minimum of different sources to be received. If less than `minN` are received no tuples are emitted.
+
+Attributes:
+- `name` (always needed): name of the new literals
+- `separator` (TODO: always needed?): string that separates the values in a combination
+- `minN` sets a minimum of different literals
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ litA: valueA1, litA: valueA2, litB: valueB }
+```
+
+__Morph-Definition__
+
+```xml
+<tuples name="combination" separator="-">
+  <data source="litA"/>
+  <data source="litB"/>
+</tuples>
+```
+
+__output__
+
+```
+{ combination: valueA1-valueB, combination: valueA2-valueB }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ litA: valueA1, litA: valueA2, litB: valueB }
+```
+
+__FIX-Definition__
+
+
+```
+do tuples("combination", separator:"-")
+  map("litA")
+  map("litB")
+end
+```
+
+__output__
+
+```
+{ combination: valueA1-valueB, combination: valueA2-valueB }
+```
+
+</details>
+
+ _________
+
+#### group
+
+[group](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Group.java) collects literals and/or collectors, usually to apply the same set of functions on them in a `postprocessing` or to set `name` or/and `value` for all only once.
+
+Attributes:
+- `name` new name for all literals (optional)
+- `value` new value for all literals (optional)
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+
+TODO: how to do this in FIX? especially postprocessing?
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ lowerA: abc, lowerB: def }
+```
+
+__Morph-Definition__
+
+```xml
+<group name="BIG">
+  <data source="lowerA"/>
+  <data source="lowerB"/>
+  <postprocess>
+    <case to="upper"/>
+  </postprocess>
+</group>
+```
+
+__output__
+
+```
+{ BIG: ABC, BIG: DEF }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ lowerA: abc, lowerB: def }
+```
+
+__FIX-Definition__
+
+
+```
+do group("BIG")
+  map("lowerA")
+  map("lowerB")
+  do postprocessing
+    case(to:"upper")
+  end
+end
+```
+
+__output__
+
+```
+{ BIG: ABC, BIG: DEF }
+```
+
+</details>
+
+ _________
+
+#### all, any, none
+
+[all](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/All.java), [any](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Any.java), [none](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/None.java) controll, if literals exist (TODO: or collectors work?). If true, they return by default an unnamed literal with the value `true`. The default name and the default value can be changed. Complex nests that cobine `all`, `any` and `none` are possible.
+
+What do they do:
+
+- `all` controls if all literals exist
+- `any` controls if at least one of the literals exists
+- `none` controls if the literals does not exist in the record
+
+Attributes:
+- `name` new name for the literal (optional)
+- `value` new value instead of true (optional)
+- `flushWith`, `reset`, `sameEntity`, see [process controll](#process-controll)
+
+<details>
+  <summary>Example <b>Morph</b></summary>
+__input__
+
+```
+{ litB: value }
+```
+
+__Morph-Definition__
+
+```xml
+<all name="all exist">
+  <data source="litA"/>
+  <data source="litB"/>
+</all>
+<any name="some exist">
+  <data source="litA"/>
+  <data source="litB"/>
+</any>
+<none name="none exist">
+  <data source="litA"/>
+  <data source="litB"/>
+</none>
+```
+
+__output__
+
+```
+{ some exist: true }
+```
+
+</details>
+
+<details>
+  <summary>Example <b>FIX</b></summary>
+__input__
+
+```
+{ litB: value }
+```
+
+__FIX-Definition__
+
+
+```
+do all("all exist")
+  map("litA")
+  mop("litB")
+end
+do any("some exist")
+  map("litA")
+  mop("litB")
+end
+do none("none exist")
+  map("litA")
+  mop("litB")
+end
+```
+
+__output__
+
+```
+{ some exist: true }
+```
+
+</details>
+
+ _________
 
 ### Process controll
 
