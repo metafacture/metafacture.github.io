@@ -4,10 +4,12 @@
 
 # Overview
 
-Here you will find the different functions and collectors that you can use for transforming data. All of the following functions and collectors are available for Metamorph (short: Morph) which is written in XML.
-Many of them are also available for FIX, the experimental succesor which is still being developed and is inspired by Catmandu FIX language.
+Here you will find the different functions and collectors that you can use for transforming data. The functionalities can be differentiated between those that operate straight with single literals ("literal functions" short "functions") and those that collect or aggregate multiple literals ("collectors").
 
-The examples are displayed in the Formate-Format which is the internal Format of metafacture. It builds upon to basic elements: Literals (key-value-pairs) and entities (Objects, that encompase lit). Before metafacture flux passes data to the morph it decode the data into formeta.
+*All* of the following functions and collectors are available for Metamorph (short: Morph) which is written in XML.
+*Many but not all* of them are also available for FIX, the experimental succesor which is still being developed and is inspired by Catmandu FIX language.
+
+The examples are displayed in the **Formate**-Format which is the internal Format of metafacture. It builds upon to basic elements: Literals (key-value-pairs) and entities (Objects, that encompase lit). Before metafacture flux passes data to the morph it decode the data into formeta.
 E.g.:
 
 ```xml
@@ -37,18 +39,21 @@ looks in formeta like this:
 
 _________
 
-# Functionalities
+# Literal functions 
 
-The functionalities can be differentiated between those that operate straight with single literals ("literal functions" short "functions") and those that collect or aggregate multiple literals ("collectors").
-
-## Literal functions 
-
-### Read - `<data>` / `map`
+## Read - `<data>` / `map`
 
 The simplest way to work with literals is to read them and then pass them on. This is done by the `data`-function.
 It always needs a `source` attribute that tells the function which literal should be read.
 
-Note: Wildcards are allowed in the `source` name. You also can use variants with square brackets `source="bee[rt]"` You can use multiple names as source by separating the names with `|` e.g. `source="beer|coffee"`
+Note: Wildcards \* and ? are allowed in the `source` attribute. You also can use variants with square brackets `source="bee[rt]"`. Furthermore you can use multiple names as source by separating the names with a pipe `|` e.g. `source="beer|coffee"`
+
+Additionally there are three variables for `source` that have fixed meanings:
+
+- `_id`: reads the ID of the record
+- `_else`: passes on all data elements that are not transformed
+- `_elseNested`: passes on all data elements that are not transformed in nested structure
+
 
 
 <details>
@@ -141,16 +146,9 @@ __output__
 
 </details>
 
-Wildcards * and ? are compatible with the `source` attribute.
+_________
 
-Additionally there are three variables for `source` that have fixed meanings:
-
-- `_id`: reads the ID of the record
-- `_else`: passes on all data elements that are not transformed
-- `_elseNested`: passes on all data elements that are not transformed in nested structure
-
----
-### Transform
+## Transform
 
 The following passage introduces the different literal functions, which transform the values. As the filter functions in the subsequent passage all literal function are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`.
 
@@ -191,7 +189,7 @@ end
 </details>
 
 _________
-#### compose
+### compose
 
 [compose](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Compose.java) wraps the value in a prefix (Attribute: `prefix`) and/or postfix (`postfix`).
 
@@ -245,7 +243,7 @@ __output__
 
 _________
 
-#### constant
+### constant
 
 [constant](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Constant.java) replaces the value with a constant string. This value is defined in the attribute `value`
 
@@ -299,7 +297,7 @@ __output__
 
 _________
 
-#### timestamp
+### timestamp
 
 [timestamp](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Timestamp.java) replaces value with recent timestamp. Without attributes `timestamp` creates a default unix timestamp.
 With attributes `format`, `timezone` and `language` you can create individual formatted timestamps.
@@ -360,7 +358,7 @@ __output__
 
 _________
 
-#### substring
+### substring
 
 [substring](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Timestamp.java) extraction of a substring. The extracted part is defined by attributes - `start` and `end` - stating the indixnumber of the letter.
 If you set the `end="0"` the remaining string will be provided.
@@ -415,7 +413,7 @@ __output__
 
 _________
 
-#### replace/setreplace
+### replace/setreplace
 
 [replace](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Replace.java) overwrites a pattern (`pattern`) with a string (`with`). You can use [Java regex Pattern](http://docs. oracle.com/javase/6/docs/api/java/util/regex/Pattern.html) when defining the pattern attribute.
 Not matching values will be passed on without changes.
@@ -527,7 +525,7 @@ __output__
 
 _________
 
-#### lookup
+### lookup
 
 [lookup](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Lookup.java) maps and replaces based on a data table. With the attribute `in` you can define a separate concordance map. In contrast to [setreplace](#replacesetreplace) it only takes static values and does not allow regex. For that see also [Data Lookup](#data-lookup). With the attribute `default` you can define a string to replace values that can't be mapped.
 
@@ -589,7 +587,7 @@ __output__
 
 _________
 
-#### case
+### case
 
 [case](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Case.java) transforms value in all upper or lower case (with attribute `to="upper"` or `to"lower"`).
 
@@ -646,7 +644,7 @@ __output__
 
 _________
 
-#### trim
+### trim
 
 [trim](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Trim.java) deletes spaces at the beginning and the end of the received value.
 
@@ -702,7 +700,7 @@ __output__
 _________
 
 
-#### normalize-utf8
+### normalize-utf8
 
 [normalize-utf8](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/NormalizeUTF8.java) does UTF-8 normalization. It brings Umlauts into canonical form e.g. *ä* that is build from the diacrit *¨ + a* to ä. For more see [here](http://www.unicode.org/reports/tr15/tr15-23.html).
 
@@ -757,7 +755,7 @@ __output__
 
 _________
 
-#### dateformat
+### dateformat
 
 [dateformat](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/DateFormat.java) models dates with following attributes:
 
@@ -821,7 +819,7 @@ __output__
 
 _________
 
-#### split
+### split
 
 [split](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Split.java) separates values in substrings based on a regexp defined in attribute `delimiter`
 
@@ -878,7 +876,7 @@ __output__
 
 _________
 
-#### isbn
+### isbn
 
 [isbn](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/ISBN.java) cleaning, checkdigit verification and transformation between ISBN 10 and ISBN 13. ISBN transformation defined in attribute `to`. Also possible to clean ISBN from hyphen. `to="clean"`.
 It is also possible to control the ISBN checkDigit with the attribute `verifyCeckDigit` and provide a own errorString (`errorString`).
@@ -933,7 +931,7 @@ __output__
 
 _________
 
-#### urlencode
+### urlencode
 
 [urlencode](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/URLEncode.java) transforms values to URL demands.
 
@@ -989,7 +987,7 @@ __output__
 
 _________
 
-#### htmlanchor
+### htmlanchor
 
 [htmlanchor](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/HtmlAnchor.java) creates an HTML anchor tag. It demands a `prefix` attribute. It also can have a `postfix` and/or a title `attribute`.
 
@@ -1045,7 +1043,7 @@ __output__
 
 _________
 
-#### switch-name-value
+### switch-name-value
 
 [switch-name-value](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/SwitchNameValue.java) exchanges name and value.
 
@@ -1099,7 +1097,7 @@ __output__
 
 _________
 
-#### script and java
+### script and java
 
 TODO: fill out this part.
 
@@ -1111,7 +1109,7 @@ TODO: fill out this part.
 
 _________
 
-#### count
+### count
 
 [count](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Count.java) counts literals and gives the actual counted number with each literal. To give back only the last counted number see the cookbook. (TODO)
 
@@ -1165,7 +1163,7 @@ __output__
 
 _________
 
-### Filter
+## Filter
 
 The following passage introduces the different literal functions, which filter literal values based on certain rules.
 
@@ -1173,7 +1171,7 @@ The following passage introduces the different literal functions, which filter l
 
  _________
 
-#### whitelist
+### whitelist
 
 [whitelist](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/WhiteList.java) filters based on a listed values that are allowed. Allowed values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup). 
 
@@ -1234,7 +1232,7 @@ __output__
 
  _________
 
-#### blacklist
+### blacklist
 
 
 [blacklist](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/BlackList.java) filters based on a listed values that are blocked. Blocked values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup).
@@ -1295,7 +1293,7 @@ __output__
 
  _________
 
-#### contains / not-contains
+### contains / not-contains
 
 [contains](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Contains.java) filters values when they have a certain substring stated in `string`.
 
@@ -1459,7 +1457,7 @@ __output__
 
  _________
 
-#### occurence
+### occurence
 
 [occurence](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Occurrence.java) filters based on how often a literal appears and passes the defined occurences on.
 
@@ -1544,7 +1542,7 @@ __output__
 
  _________
 
-#### regexp
+### regexp
 
 [regexp](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Regexp.java) filters values based on matching them with regular expressions specified in `match`. It returns the first occurrence of a pattern. The pattern is a Java regex Pattern (see http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html). Additinally it can transform the matched pattern defined in `format`. This also supports capture groups which should be state in `format` with ${1} (TODO: also could be or $1)
 
@@ -1638,7 +1636,7 @@ __output__
 
  _________
 
-#### unique
+### unique
 
 [unique](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Unique.java) filters out duplicate literals. With following attributes the scope and the apperance of the duplicates can be specified:
 
@@ -1736,17 +1734,17 @@ __output__
 
  _________
 
-### Other
+## Other
 
 Some function do not fit in the filter/transformation divide.
 
-#### buffer
+### buffer
 
 [buffer](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Buffer.java) withholds literal until the `flushWith`-condition is met. For further details concerning `flushWith" [see](#process-controll).
 
 TODO: https://swissbib.gitlab.io/metamorph-doku/literale/filter/ states a bug concerning the buffer. Examples should be added.
 
-#### add_field (only FIX)
+### add_field (only FIX)
 
 [add_field](https://github.com/metafacture/metafacture-fix/blob/13dad3799d1ba91338f27161da2391b209302abb/org.metafacture.fix/src/main/java/org/metafacture/metamorph/FixFunction.java#L42) creates a field without corresponding key in the source data.
 
@@ -1774,7 +1772,7 @@ __output__
 
  _________
 
-### Data lookup
+## Data lookup
 
 A certain group of functions takes a map/dictionary as argument for filter or transform literals: `<lookup>`, `<whitelist>`, `<blacklist>` etc.
 This can be done in three different ways:
@@ -1784,7 +1782,7 @@ This can be done in three different ways:
 
 In this section the usage of such maps will be explained. We start with a simple example of data lookup.
 
-#### Local Lookup
+### Local Lookup
 
 Take for instance an operation in which you want to replace values according to a lookup table: Value 'A' maps to 'print', 'B' maps to 'audiovisual' an so forth. This is accomplished by the `<lookup>` function. The lookup table is defined inside the `<lookup>` tag. The following code snippet depicts this situation.
 
@@ -1821,7 +1819,7 @@ end
 
 _________
 
-#### map
+### map
 
 The same lookup tables may used in different places in a Metamorph definition. To enable reuse, a map/dictionary can be defined separately from the respective lookup function. 
 In the following listing the `<lookup>` function refers to the table using the name _material_.
@@ -1869,7 +1867,7 @@ TODO: How to do this in FIX?
 
 _________
 
-##### filemap
+### filemap
 
 filemap allows to use mappings stored in a separate text file. Each row then represents a key-value-pair.
 Attributes:
@@ -1893,7 +1891,7 @@ TODO: How to do this in FIX?
 
 _________
 
-##### javamap
+### javamap
 
 TODO: Better description and how to 
 
@@ -1935,7 +1933,7 @@ __Important:__ If your `Map` implementation allocates resources which need to be
 
 _________
 
-#### restmap
+### restmap
 
 [restmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/RestMap.java) requests a REST-API
 
@@ -1947,7 +1945,7 @@ TODO: example and FIX
 
 _________
 
-__sqlmap__
+### sqlmap
 
  [sqlmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/SqlMap.java) queries a SQL database
  
@@ -1965,7 +1963,7 @@ TODO: example and FIX
 
 _________
 
-__jndisqlmap__
+### jndisqlmap
 
  [jndisqlmap](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/maps/JndiSqlMap.java) requests a SQL databse via [JNDI](https://de.wikipedia.org/wiki/Java_Naming_and_Directory_Interface)
 
@@ -1978,7 +1976,7 @@ TODO: example and FIX
 
 _________
 
-## Collectors
+# Collectors
 
 In the case that an output depends on the values from more then one literal, we need to collect literals.
 
@@ -2029,9 +2027,9 @@ end
 
 The following paragraphs briefly introduce the different collectors available. 
 
-### List of collectors
+## List of collectors
 
-#### combine
+### combine
 
  [combine](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Combine.java) puts together different literals following a certain value template. Following values overwrite previes values of the same field.
  
@@ -2098,7 +2096,7 @@ __output__
  _________
 
 
-#### concat
+### concat
 
 [concat](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Concat.java) collects all received values and concatenates them on record end by default.
 
@@ -2169,7 +2167,7 @@ __output__
  _________
 
 
-#### entity
+### entity
 
 [entity](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Entity.java) creates a new entity or subentity with the collected literals.
 
@@ -2236,7 +2234,7 @@ __output__
 
  _________
 
-#### choose
+### choose
 
 [choose](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Choose.java) collects all received values and emits the most preferred one on record end. Preference is assigned according to the order the data sources appear within the choose tag.
 
@@ -2300,7 +2298,7 @@ __output__
 
  _________
 
-#### range
+### range
 
 [range](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Range.java) reads two following literals as intigers, which define the start and endpoint of a numerical series.
 
@@ -2365,7 +2363,7 @@ __output__
 
  _________
 
-#### equalsFilter
+### equalsFilter
 
 [equalsFilter](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/EqualsFilter.java) returns a new literal, if all incoming values of the literals are identical.
 
@@ -2430,7 +2428,7 @@ __output__
 
  _________
 
-#### square
+### square
 
 [square](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Square.java) combines and emits all incoming values to all possible not orderd pairs. The emitted values won't be overwritten.
 
@@ -2498,7 +2496,7 @@ __output__
  _________
 
 
-#### tuples
+### tuples
 
 [tuples](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Tuples.java) creates all possible combination of the *different* literals. With the attribute `minN` you can set a a minimum of different sources to be received. If less than `minN` are received no tuples are emitted.
 
@@ -2563,7 +2561,7 @@ __output__
 
  _________
 
-#### group
+### group
 
 [group](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Group.java) collects literals and/or collectors, usually to apply the same set of functions on them in a `postprocessing` or to set `name` or/and `value` for all only once.
 
@@ -2633,7 +2631,7 @@ __output__
 
  _________
 
-#### all, any, none
+### all, any, none
 
 [all](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/All.java), [any](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Any.java), [none](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/None.java) controll, if literals exist (TODO: or collectors work?). If true, they return by default an unnamed literal with the value `true`. The default name and the default value can be changed. Complex nests that cobine `all`, `any` and `none` are possible.
 
@@ -2719,32 +2717,32 @@ __output__
 
  _________
 
-### Process controll
+## Process controll
 
 When and how *collectors* provide their results, can be defined by three different parameters: `flushWith`, `reset` and `sameEntity`. All of them are stated as attributes to a collector. At the moment process controll attributes are not supported in FIX. This is due to the change that FIX will not process stream based but record based.
 
 TODO: Specify the process controll for subentities since they do not always work as the parententity.
 
-## default settings `flushWith`, `reset` und `sameEntity`
+# default settings `flushWith`, `reset` und `sameEntity`
 
 Collector          |  flushWith       |  reset   |  sameEntity
 ------------------ | ---------------- | -------- | ------------
-__`combine`__      | wenn vollständig | `false`  | `false`
+__`combine`__      | if complete      | `false`  | `false`
 __`concat`__       | `record`         | `true`   | `false`
-__`entity`__       | wenn vollständig | `false`  | `false`
-__`squares`__      | `record`         | `true`   | entfällt
-__`tuples`__       | `record`         | entfällt | entfällt
-__`group`__        | entfällt         | entfällt | entfällt
+__`entity`__       | if complete      | `false`  | `false`
+__`squares`__      | `record`         | `true`   | not applicable 
+__`tuples`__       | `record`         | not applicable  | not applicable 
+__`group`__        | not applicable   | not applicable  | not applicable 
 __`choose`__       | `record`         | `true`   | `false`
 __`range`__        | `record`         | `false`  | `false`
-__`equalsFilter`__ | wenn vollständig | `false`  | `false`
-__`all`__          | wenn vollständig | `false`  | `false`
-__`any`__          | wenn vollständig | `false`  | `false`
-__`none`__         | wenn vollständig | `false`  | `false`
+__`equalsFilter`__ | if complete      | `false`  | `false`
+__`all`__          | if complete      | `false`  | `false`
+__`any`__          | if complete      | `false`  | `false`
+__`none`__         | if complete      | `false`  | `false`
 
 
  _________
-#### flushWith
+### flushWith
 
 The attribute `flushWith`  triggers output on the occurrence of any literal or entity with is stated as value: `flushWith="[name]"`. Variables in the output pattern which are not yet bound to a value, are replaced with the empty string. Wildcards can be used. Also multiple fields can be named when seperated by `|`.
 
@@ -2761,7 +2759,7 @@ Note:
 
  _________
 
-#### reset
+### reset
 
 The attritbute `reset` deletes all collected and processed literals after they are flushed. If `reset="false"` the processed literals will be cached and will be processed agan with *every* ne collected literal again.
 
@@ -2770,7 +2768,7 @@ Note:
  - 
  _________
 
-#### sameEntity
+### sameEntity
 
 The attribute `sameEntity` will reset the collector after each entity end if set to true. Thus **processes only collections from the same source entity**. Note:
 - the implenemntation only executes a reset if actually needed and it is independent of the `reset` attribute setting.
@@ -2778,7 +2776,7 @@ The attribute `sameEntity` will reset the collector after each entity end if set
  
  _________
 
-### if conditionals
+## if conditionals
 
 Collectors output can additionally be controlled with `if`-conditionals if they are flushed or not. At the moment if-conditionals are not supported in FIX.
 A collector can have a single `if`-conditional.
@@ -2845,11 +2843,11 @@ e.g. the following scenarion only combines literals if the fieldA has valueA and
  
  _________
 
-## Modularise
+# Modularise
 
 The following chapter introduces how literals and morph definitions can be reused in a morph process.
 
-### recursion
+## recursion
 
 TODO: Does this work with FIX?
 
@@ -2932,13 +2930,13 @@ __output__
 
  _________
 
-#### variable
+### variable
 
 TODO: at a later stage
 
 works in FIX
 
-#### makros
+### makros
 
 You can define macros outside of the <rules>-element that let you reuse functions and collector combinations.
 
