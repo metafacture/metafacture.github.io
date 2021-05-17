@@ -4,6 +4,8 @@
 
 # Literal functions 
 
+TODO: General Remark to the difference in MOPRH AND FIX and how to state attribtutes?
+
 ## Read - `<data>` / `map`
 
 The simplest way to work with literals is to read them and then pass them on. This is done by the `data`-function.
@@ -138,6 +140,8 @@ __Morph-Definition__
 
 __FIX-Definition__
 
+TODO: is the example right in FIX?
+
 ```
 do map ("litA", "gruss")
   trim()
@@ -145,7 +149,7 @@ do map ("litA", "gruss")
     entry ("hallo")
     entry ("grüezi")
   end
-  case (to="upper")
+  case (to: "upper")
 end
 ```
 
@@ -192,7 +196,7 @@ __FIX-Definition__
 
 ```
 do map("litA")
-  compose(prefix: 'Hello' postfix: '!')
+  compose(prefix: "Hello", postfix: "!")
 end
 ```
 
@@ -243,6 +247,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to do this in FIX? With or without `value:`
 
 ```
 do map("litA")
@@ -303,7 +309,7 @@ __input__
 
 __FIX-Definition__
 
-TODO: How to use it in FIX?
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do map("_id_")
@@ -359,6 +365,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do map("litA")
@@ -417,7 +425,7 @@ __FIX-Definition__
 
 ```
 do map("litA")
-  replace(pattern:"[ace]", with="X")
+  replace(pattern:"[ace]", with:"X")
 end
 ```
 
@@ -430,6 +438,9 @@ __output__
 </details>
 
 [setreplace](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/SetReplace.java) replaces multiple strings. The mapping from string to replacement is defined in a map, just as done in the lookup function. See also Data Lookup. Setreplace does not support regex if you use in a seperate map.
+
+TODO: `replace` and `regexp` seem to have different ways in using groups with and without bracket.
+
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -505,7 +516,7 @@ __input__
 __Morph-Definition__
 
 ```xml
-<data source="kanton" name="hauptort">
+<data source="kanton" name="main location">
   <lookup default="nicht bekannt">
     <entry name="Wallis" value="Sion"/>
     <entry name="Jura" value="Delémont"/>
@@ -517,7 +528,7 @@ __Morph-Definition__
 __output__
 
 ```
-{hauptort: Lausanne, hauptort: Sion, hauptort: Delémont, hauptort: nicht bekannt}
+{main location: Lausanne, main location: Sion, main location: Delémont, main location: nicht bekannt}
 ```
 
 </details>
@@ -532,18 +543,18 @@ __input__
 
 __FIX-Definition__
 
-TODO: show fix form
+TODO: How to use it in FIX? Attributes with or without names? With In we have a leading: `in: `
 
 ```
-do map("kanton", "hauptort")
-  lookup(...)
+do map("kanton", "main location")
+  lookup(in: "...")
 end
 ```
 
 __output__
 
 ```
-{hauptort: Lausanne, hauptort: Sion, hauptort: Delémont, hauptort: nicht bekannt}
+{main location: Lausanne, main location: Sion, main location: Delémont, main location: nicht bekannt}
 ```
 
 </details>
@@ -589,6 +600,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Attributes with or without names?
 
 
 ```
@@ -644,6 +657,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Always with emty brackets?
 
 
 ```
@@ -701,6 +716,7 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Always with empty brackets?
 
 ```
 do map("litA")
@@ -764,6 +780,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Attributes with or without names?
 
 
 ```
@@ -877,6 +895,7 @@ __input__
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do map("isbn")
@@ -932,6 +951,8 @@ __input__
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Always empty brackets?
 
 ```
 do map("author", "search")
@@ -989,6 +1010,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Attributes with or without names?
+
 ```
 do map("article", "anchor")
   urlcode()
@@ -1044,6 +1067,7 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Always empty brackets?
 ```
 do map("litA")
   switch-name-value()
@@ -1068,13 +1092,15 @@ TODO: fill out this part.
 
 `script` uses attribute `invoke` for an Javascript-function in an external file (attribute `file`) to pass the values on.
 
-`java` TODO..
+TODO: How to use it in FIX? Attributes with or without names?
+
+`java` TODO: Morph and FIX
 
 _________
 
 ### count
 
-[count](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Count.java) counts literals and gives the actual counted number with each literal. To give back only the last counted number see the cookbook. (TODO)
+[count](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Count.java) counts literals and gives the actual counted number with each literal. To give back only the last counted number see the cookbook. (TODO: cookbook refrence)
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -1110,6 +1136,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Always empty brackets?
+
 ```
 do map("litA")
   count()
@@ -1130,15 +1158,14 @@ _________
 
 The following passage introduces the different literal functions, which filter literal values based on certain rules.
 
- As all literal function filter functions are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`. For more see [here](#transform)
+As all literal function filter functions are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`. For more see [here](#transform)
 
- _________
+_________
 
 ### whitelist
 
 [whitelist](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/WhiteList.java) filters based on a listed values that are allowed. Allowed values are stated as following `<entry name=[value]/>`. You can also use an external [Data Lookup](#data-lookup). 
 
-TODO: How does this work in FIX
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -1171,13 +1198,13 @@ __output__
   <summary>Example <b>FIX</b></summary>
 __input__
 
-TODO: describe example in FIX
 
 ```
 {litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names? And how to state the `entity`-elements?
 
 ```
 do map("litA")
@@ -1232,13 +1259,14 @@ __output__
   <summary>Example <b>FIX</b></summary>
 __input__
 
-TODO: describe example in FIX
 
 ```
 {litA: allowed, litA: not allowed, litA: not permitted, litA: forbidden, litA: accepted}
 ```
 
 __FIX-Definition__
+
+TODO: How to use it in FIX? Attributes with or without names? And how to state the `entity`-elements?
 
 ```
 do map("litA")
@@ -1296,6 +1324,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Attributes with or without names?
+
 ```
 do map("litA")
   contains(string: "hamster")
@@ -1348,6 +1378,7 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Attributes with or without names?
 ```
 do map("litA")
   not-contains(string: "hamster")
@@ -1403,6 +1434,7 @@ __input__
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do map("litA")
@@ -1482,18 +1514,13 @@ __input__
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do map("litA")
   occurence(only: "2")
 end
 ```
-
-__output__
-
-```
-{litA: turtle}
-```The following paragraphs briefly introduce the different collectors available. 
 
 __output__
 
@@ -1583,6 +1610,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: `replace` and `regexp` seem to have different ways in using groups with and without bracket. 
+
 ```
 do map("litA")
   regexp(match:"(\d\d\d\d)  to  (\d\d\d\d)", format:"${1}-${2}
@@ -1661,6 +1690,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Attributes with or without names?
+
 ```
 do map("litA")
   unique()
@@ -1706,6 +1737,8 @@ Some function do not fit in the filter/transformation divide.
 [buffer](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/functions/Buffer.java) withholds literal until the `flushWith`-condition is met. For further details concerning `flushWith" [see](#process-controll).
 
 TODO: https://swissbib.gitlab.io/metamorph-doku/literale/filter/ states a bug concerning the buffer. Examples should be added.
+
+TODO: How to use it in FIX? Attributes with or without names?
 
 ### add_field (only FIX)
 
@@ -1768,6 +1801,8 @@ Take for instance an operation in which you want to replace values according to 
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
+TODO: How to use it in FIX? Attributes with or without names? How to state `entry`-elements?
 ```
 do map("002@.0", "dcterms:format")
   substring(start:"0", end="1")
@@ -1826,7 +1861,7 @@ With the `<map>` tag the contents of the map can be defined right away in the Me
 ```
 </details>
 
-TODO: How to do this in FIX?
+ TODO: How to use it in FIX? Attributes with or without names?
 
 _________
 

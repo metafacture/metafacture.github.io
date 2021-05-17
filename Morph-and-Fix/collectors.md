@@ -13,7 +13,7 @@ Allmost all collector can be:
 -  can be nested except `entity`
 -  to all types of collectors post-processing steps can be added by using the `postprocess` tag (FIX?)
 
-TODO: specify for FIX
+TODO: specify for FIX, do all collectors in FIX start with do? attributes always with name? How to `postprocess` in FIX
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -38,6 +38,8 @@ __Morph-Definition__
 
 __FIX-Definition__
 
+TODO: example in FIX right?
+
 ```
 do combine ("neu", "${lastName}, ${firstName}")
   map("field1", "firstName")
@@ -57,15 +59,15 @@ The following paragraphs briefly introduce the different collectors available.
 
 ### combine
 
- [combine](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Combine.java) puts together different literals following a certain value template. Following values overwrite previes values of the same field.
- 
- Attributes:
+[combine](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Combine.java) puts together different literals following a certain value template. Following values overwrite previes values of the same field.
+
+Attributes:
+
 - `name` (always needed): name of the new field
 - `value` (always needed): Template. Values can be added with ${fieldname} (TODO: FIX, ohne geschwiffene Klammer?)
 - `flushWith` (default: if complete)
 - `reset`, (default: false)
 - `sameEntity`, (default: false) 
-
 
 There are several important points to note: By default <combine> waits until at least one value from each `<data>` tag is received. If the collection is not complete on record end, no output is generated. After each output, the state of `<combine>` is reset. If one `<data>` tag receives literals repeatedly before the collection is complete only the last value will be retained.
 
@@ -104,6 +106,8 @@ __input__
 
 __FIX-Definition__
 
+TODO: How to use it in FIX? Attributes with or without names?
+
 ```
 do combine("gnd:variantNameForThePerson", "${surname}, ${forename}")
   map("028A.a", "surname")
@@ -127,6 +131,7 @@ __output__
 [concat](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Concat.java) collects all received values and concatenates them on record end by default.
 
 Attributes:
+
 - `name` (always needed): name of the new field
 - `delimiter` sign to separate values (default: "")
 - `prefix`
@@ -152,8 +157,8 @@ __Morph-Definition__
 
 ```xml
 <concat delimiter=", " name="concat" prefix="{" postfix="}">
-   <data source="data1" />
-   <data source="data2" />
+  <data source="data1" />
+  <data source="data2" />
 </concat>
 ```
 
@@ -174,11 +179,12 @@ __input__
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do concat(delimiter: ",", name: "concat", prefix: "{", postfix: "}")
-   map("data1")
-   map("data2")
+  map("data1")
+  map("data2")
 end
 ```
 
@@ -198,13 +204,13 @@ __output__
 [entity](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Entity.java) creates a new entity or subentity with the collected literals.
 
 Attributes:
+
 - `name` (always needed): name of the new entity
 - `flushWith`  (default: if complete)
 - `reset` (default: false)
 - `sameEntity` (default: false)
 
-Note: An `entity` can nest other collectors but an `entity` can only be nested in another `entity`.
-
+Note: An `entity` can nest other collectors but an `entity` can only be nested in another `entity`
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -329,6 +335,7 @@ __output__
 [range](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Range.java) reads two following literals as intigers, which define the start and endpoint of a numerical series.
 
 Attributes:
+
 - `name` (always needed): name of the new literal
 - `increment` (default: 1)
 - `flushWith`  (default: "record")
@@ -370,10 +377,10 @@ __input__
 
 __FIX-Definition__
 
-TODO: specify arguments or attributes
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
-do range("even number", infrement: "2")
+do range("even number", increment: "2")
   map("beginning")
   map("end")
 end
@@ -394,6 +401,7 @@ __output__
 [equalsFilter](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/EqualsFilter.java) returns a new literal, if all incoming values of the literals are identical.
 
 Attributes:
+
 - `name` (always needed): name of the new literal
 - `value` (always needed): value of the new literal
 - `flushWith`  (default: if complete)
@@ -435,7 +443,7 @@ __input__
 ```
 
 __FIX-Definition__
-
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do equalsFilter("all the same", "true!")
@@ -459,6 +467,7 @@ __output__
 [square](https://github.com/metafacture/metafacture-core/blob/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Square.java) combines and emits all incoming values to all possible not orderd pairs. The emitted values won't be overwritten.
 
 Attributes:
+
 - `name` (always needed): name of the new literals
 - `delimiter` (always needed): string that separates the values in a combination
 - `prefix`
@@ -501,7 +510,7 @@ __input__
 ```
 
 __FIX-Definition__
-
+TODO: How to use it in FIX? Attributes with or without names?
 
 ```
 do square("pair", "-", prefix:"@", postfix:"@")
@@ -527,6 +536,7 @@ __output__
 [tuples](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Tuples.java) creates all possible combination of the *different* literals. With the attribute `minN` you can set a a minimum of different sources to be received. If less than `minN` are received no tuples are emitted.
 
 Attributes:
+
 - `name` (always needed): name of the new literals
 - `separator` (TODO: always needed?): string that separates the values in a combination
 - `minN` sets a minimum of different literals
@@ -568,6 +578,7 @@ __input__
 ```
 
 __FIX-Definition__
+TODO: How to use it in FIX? Attributes with or without names?
 
 
 ```
@@ -592,6 +603,7 @@ __output__
 [group](https://github.com/metafacture/metafacture-core/tree/master/metamorph/src/main/java/org/metafacture/metamorph/collectors/Group.java) collects literals and/or collectors, usually to apply the same set of functions on them in a `postprocessing` or to set `name` or/and `value` for all only once.
 
 Attributes:
+
 - `name` new name for all literals (optional)
 - `value` new value for all literals (optional)
 
@@ -635,7 +647,7 @@ __input__
 ```
 
 __FIX-Definition__
-
+TODO: How to use it in FIX? Attributes with or without names? Postprocessing?
 
 ```
 do group("BIG")
@@ -668,6 +680,7 @@ What do they do:
 - `none` controls if the literals does not exist in the record
 
 Attributes:
+
 - `name` new name for the literal (optional)
 - `value` new value instead of true (optional)
 - `flushWith`  (default: if complete)
@@ -716,7 +729,7 @@ __input__
 ```
 
 __FIX-Definition__
-
+TODO: How to use it in FIX? Attributes with or without names? Does they exist in FIX?
 
 ```
 do all("all exist")
@@ -766,7 +779,7 @@ __`all`__          | if complete      | `false`  | `false`
 __`any`__          | if complete      | `false`  | `false`
 __`none`__         | if complete      | `false`  | `false`
 
-
+TODO: are the default settings the same in FIX? I think this is important.
  _________
 ### flushWith
 
@@ -778,29 +791,32 @@ If flushWith has a certain entity as parameter it outputs at the end of the enti
 Fix does not support `flushWith`.
 
 Note:
+
 - `combine`, `entity`, `equalsFilter` and the Quantors `all`, `any`, `none` flush by default if all demanded literals are processed once. If not, the collector is not triggert at all.
 - If the explicit or default `flushWith` definition is not met the collector is not triggered and the collected literals will not be processed further.
 - Empty collectors are not processed at all with or without `flushWith`
 - Be careful with Wildcards. TODO: see swissbib warning: https://swissbib.gitlab.io/metamorph-doku/literale/datenfelder/
 
- _________
+_________
 
 ### reset
 
 The attritbute `reset` deletes all collected and processed literals after they are flushed. If `reset="false"` the processed literals will be cached and will be processed agan with *every* ne collected literal again.
 
 Note:
+
  - `entity`, `combine`, `range`, `equalsFilter`, `all`, `any` and `none` are all by default set to `reset="false"`. This can create duplicates especially if you want to create multiple objects as `entity`. Then you have to set `reset="true"` to prevent these duplications of keys.
- - 
- _________
+
+_________
 
 ### sameEntity
 
 The attribute `sameEntity` will reset the collector after each entity end if set to true. Thus **processes only collections from the same source entity**. Note:
+
 - the implenemntation only executes a reset if actually needed and it is independent of the `reset` attribute setting.
 - is the source entity is processed but not all source literals and nested collectors are provided, then the saved literals are deleted and eventually overwritten. Then you need an additional `flushWith` attribute.
- 
- _________
+
+_________
 
 ## if conditionals
 
@@ -825,6 +841,7 @@ The syntax looks as follows:
 In this scenario only if fieldA has valueA the collector will be processed.
 
 Note:
+
  - `if`-conditionals support all filter functions (see example above)
  - also all quantifiers (`all`, `any` and `none`)  can be used inside a `if`-conditional. But only one quantifier can be the direct child of a conditional.
   

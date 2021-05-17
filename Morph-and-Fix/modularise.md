@@ -93,7 +93,7 @@ __output__
 
 TODO: at a later stage
 
-works in FIX
+works in FIX, should be explained
 
 ### makros
 
@@ -140,4 +140,4 @@ __includes__
 
 TODO: at a later stage
 
-works in FIX
+TODO: How to use it in FIX? 
