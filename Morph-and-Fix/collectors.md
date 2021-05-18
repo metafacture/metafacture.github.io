@@ -624,14 +624,7 @@ __input__
 __Morph-Definition__
 
 ```xml
-<group name="BIG">
-  <data source="lowerA"/>
-  <data source="lowerB"/>
-  <postprocess>
-    <case to="upper"/>
-  </postprocess>
-</group>
-```
+<group name="BIG">NOTE: This option is only applicable in combination with flushWith.
 
 __output__
 
@@ -767,20 +760,20 @@ TODO: Specify the process controll for subentities since they do not always work
 
 ## default settings `flushWith`, `reset` und `sameEntity`
 
-Collector          |  `flushWith`     |  `reset`        |  `sameEntity`  |  `flushIncomplete`
------------------- | ---------------- | --------        | ------------   |
-__`combine`__      | if complete      | `false`         | `false`        |  `true`
-__`concat`__       | `record`         | `true`          | `false`        |  not applicable
-__`entity`__       | if complete      | `false`         | `false`        |  `true`
-__`squares`__      | `record`         | `true`          | not applicable |  not applicable
-__`tuples`__       | `record`         | not applicable  | not applicable |  not applicable
-__`group`__        | not applicable   | not applicable  | not applicable |  not applicable
-__`choose`__       | `record`         | `true`          | `false`        |  not applicable
-__`range`__        | `record`         | `false`         | `false`        |  not applicable
-__`equalsFilter`__ | if complete      | `false`         | `false`        |  `true`
-__`all`__          | if complete      | `false`         | `false`        |  not applicable
-__`any`__          | if complete      | `false`         | `false`        |  not applicable
-__`none`__         | if complete      | `false`         | `false`        |  not applicable
+Collector          |  `flushWith`     |  `reset`        |  `sameEntity`  |  `flushIncomplete` |
+------------------ | ---------------- | --------        | ------------   |  ------------ 
+__`combine`__      | if complete      | `false`         | `false`        |  `true` |
+__`concat`__       | `record`         | `true`          | `false`        |  not applicable |
+__`entity`__       | if complete      | `false`         | `false`        |  `true` |
+__`squares`__      | `record`         | `true`          | not applicable |  not applicable |
+__`tuples`__       | `record`         | not applicable  | not applicable |  not applicable |
+__`group`__        | not applicable   | not applicable  | not applicable |  not applicable |
+__`choose`__       | `record`         | `true`          | `false`        |  not applicable |
+__`range`__        | `record`         | `false`         | `false`        |  not applicable |
+__`equalsFilter`__ | if complete      | `false`         | `false`        |  `true` |
+__`all`__          | if complete      | `false`         | `false`        |  not applicable |
+__`any`__          | if complete      | `false`         | `false`        |  not applicable |
+__`none`__         | if complete      | `false`         | `false`        |  not applicable |
 
 TODO: are the default settings the same in FIX? I think this is important.
  _________
@@ -825,6 +818,8 @@ The attribute `sameEntity` will reset the collector after each entity end if set
 The attribute `flushIncomplete` controlls if a collector is complete before flushing. Without this option, a flushing collector (e.g. `EqualsFilter`) always emits its value when being flushed, regardless of whether it's already complete.
 
 Only applies to a subset of all flushing collectors since most of them are never "complete"; `All`, on the other hand, has this condition already built-in.
+
+NOTE: This option is only applicable in combination with `flushWith`.
 
 TODO: Is this supported or planned for FIX?
 _________
