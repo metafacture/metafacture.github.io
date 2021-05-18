@@ -67,7 +67,8 @@ Attributes:
 - `value` (always needed): Template. Values can be added with ${fieldname} (TODO: FIX, ohne geschwiffene Klammer?)
 - `flushWith` (default: if complete)
 - `reset`, (default: false)
-- `sameEntity`, (default: false) 
+- `sameEntity`, (default: false)
+- `flushIncomplete` (default: "true")
 
 There are several important points to note: By default <combine> waits until at least one value from each `<data>` tag is received. If the collection is not complete on record end, no output is generated. After each output, the state of `<combine>` is reset. If one `<data>` tag receives literals repeatedly before the collection is complete only the last value will be retained.
 
@@ -209,6 +210,7 @@ Attributes:
 - `flushWith`  (default: if complete)
 - `reset` (default: false)
 - `sameEntity` (default: false)
+- `flushIncomplete` (default: "true")
 
 Note: An `entity` can nest other collectors but an `entity` can only be nested in another `entity`
 
@@ -407,6 +409,7 @@ Attributes:
 - `flushWith`  (default: if complete)
 - `reset` (default: "false")
 - `sameEntity` (default: "false")
+- `flushIncomplete` (default: "true")
 
 
 <details>
@@ -758,26 +761,26 @@ __output__
 
 ## Process controll
 
-When and how *collectors* provide their results, can be defined by three different parameters: `flushWith`, `reset` and `sameEntity`. All of them are stated as attributes to a collector. At the moment process controll attributes are not supported in FIX. This is due to the change that FIX will not process stream based but record based.
+When and how *collectors* provide their results, can be defined by three different parameters: `flushWith`, `reset`, `sameEntity` and `flushIncomplete`. All of them are stated as attributes to a collector. At the moment process controll attributes are not supported in FIX. This is due to the change that FIX will not process stream based but record based.
 
 TODO: Specify the process controll for subentities since they do not always work as the parententity.
 
 ## default settings `flushWith`, `reset` und `sameEntity`
 
-Collector          |  flushWith       |  reset   |  sameEntity
------------------- | ---------------- | -------- | ------------
-__`combine`__      | if complete      | `false`  | `false`
-__`concat`__       | `record`         | `true`   | `false`
-__`entity`__       | if complete      | `false`  | `false`
-__`squares`__      | `record`         | `true`   | not applicable 
-__`tuples`__       | `record`         | not applicable  | not applicable 
-__`group`__        | not applicable   | not applicable  | not applicable 
-__`choose`__       | `record`         | `true`   | `false`
-__`range`__        | `record`         | `false`  | `false`
-__`equalsFilter`__ | if complete      | `false`  | `false`
-__`all`__          | if complete      | `false`  | `false`
-__`any`__          | if complete      | `false`  | `false`
-__`none`__         | if complete      | `false`  | `false`
+Collector          |  `flushWith`     |  `reset`        |  `sameEntity`  |  `flushIncomplete`
+------------------ | ---------------- | --------        | ------------   |
+__`combine`__      | if complete      | `false`         | `false`        |  `true`
+__`concat`__       | `record`         | `true`          | `false`        |  not applicable
+__`entity`__       | if complete      | `false`         | `false`        |  `true`
+__`squares`__      | `record`         | `true`          | not applicable |  not applicable
+__`tuples`__       | `record`         | not applicable  | not applicable |  not applicable
+__`group`__        | not applicable   | not applicable  | not applicable |  not applicable
+__`choose`__       | `record`         | `true`          | `false`        |  not applicable
+__`range`__        | `record`         | `false`         | `false`        |  not applicable
+__`equalsFilter`__ | if complete      | `false`         | `false`        |  `true`
+__`all`__          | if complete      | `false`         | `false`        |  not applicable
+__`any`__          | if complete      | `false`         | `false`        |  not applicable
+__`none`__         | if complete      | `false`         | `false`        |  not applicable
 
 TODO: are the default settings the same in FIX? I think this is important.
  _________
@@ -816,6 +819,14 @@ The attribute `sameEntity` will reset the collector after each entity end if set
 - the implenemntation only executes a reset if actually needed and it is independent of the `reset` attribute setting.
 - is the source entity is processed but not all source literals and nested collectors are provided, then the saved literals are deleted and eventually overwritten. Then you need an additional `flushWith` attribute.
 
+
+### flushIncomplete
+
+The attribute `flushIncomplete` controlls if a collector is complete before flushing. Without this option, a flushing collector (e.g. `EqualsFilter`) always emits its value when being flushed, regardless of whether it's already complete.
+
+Only applies to a subset of all flushing collectors since most of them are never "complete"; `All`, on the other hand, has this condition already built-in.
+
+TODO: Is this supported or planned for FIX?
 _________
 
 ## if conditionals
