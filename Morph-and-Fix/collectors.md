@@ -758,7 +758,7 @@ When and how *collectors* provide their results, can be defined by three differe
 
 TODO: Specify the process controll for subentities since they do not always work as the parententity.
 
-## default settings `flushWith`, `reset` und `sameEntity`
+## default settings `flushWith`, `reset`, `sameEntity` and `flushIncomplete`
 
 Collector          |  `flushWith`     |  `reset`        |  `sameEntity`  |  `flushIncomplete` |
 ------------------ | ---------------- | --------        | ------------   |  ------------ 
