@@ -4,32 +4,30 @@
 
 # Literal functions 
 
-TODO: General Remark to the difference in MOPRH AND FIX and how to state attribtutes?
+Note: the syntax for Morph is stable, while the syntax for Fix is work in progress and still subject to change. In general, XML attributes like `string="value"` translate to Fix attributes like `string: "value"`. At the same time, the goal of Fix is to reassemble the Catmandu::Fix language. See the `map` example below.
 
 ## Read - `<data>` / `map`
 
-The simplest way to work with literals is to read them and then pass them on. This is done by the `data`-function.
-It always needs a `source` attribute that tells the function which literal should be read.
+The simplest way to work with literals is to read them and then pass them on. This is done by the `data` XML element. It always needs a `source` attribute that tells the function which literal should be read.
 
 Note: Wildcards \* and ? are allowed in the `source` attribute. You also can use variants with square brackets `source="bee[rt]"`. Furthermore you can use multiple names as source by separating the names with a pipe `|` e.g. `source="beer|coffee"`
 
-Additionally there are three variables for `source` that have fixed meanings:
+Additionally there are three values for `source` that have fixed meanings:
 
 - `_id`: reads the ID of the record
-- `_else`: passes on all data elements that are not transformed
+- `_elseFlattened`: passes on all data elements that are not transformed in flattened structure
 - `_elseNested`: passes on all data elements that are not transformed in nested structure
-
-
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__Morph-Definition__
+__morph__
 
 ```xml
 <data source="litA" />
@@ -46,16 +44,17 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__FIX-Definition__
+__fix__
 
 ```
-map ("litA")
+map("litA")
 ```
 __output__
 
@@ -69,13 +68,14 @@ It also can have a `name` attribute to rename the key.
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__Morph-Definition__
+__morph__
 
 ```xml
 <data source="litA" name="Alien" />
@@ -91,16 +91,17 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__FIX-Definition__
+__fix__
 
 ```
-map ("litA", "Alien")
+map("litA", "Alien")
 ```
 
 __output__
@@ -115,7 +116,7 @@ _________
 
 ## Transform
 
-The following passage introduces the different literal functions, which transform the values. As the filter functions in the subsequent passage all literal function are inserted in the `<data>`-Element. In the FIX language the literal functions are inserted in an `do map ([source], [name]) ... end`.
+The following section introduces the different literal functions, which transform the values, in this example by trimming the values. As the filter functions in the subsequent passage, all literal function are inserted in the `<data>` Element. In the Fix language the literal functions are inserted in an `do map ([source], [name]) ... end`.
 
 <details>
   <summary>Example <b>Morph</b></summary>
@@ -125,11 +126,6 @@ __Morph-Definition__
 ```xml
 <data source="litA" name="gruss">
   <trim/>
-  <whitelist>
-    <entry name="hallo"/>
-    <entry name="grüezi"/>
-  </whitelist>
-  <case to="upper"/>
 </data>
 ```
 
@@ -140,16 +136,9 @@ __Morph-Definition__
 
 __FIX-Definition__
 
-TODO: is the example right in FIX?
-
 ```
 do map ("litA", "gruss")
   trim()
-  do whitelist
-    entry ("hallo")
-    entry ("grüezi")
-  end
-  case (to: "upper")
 end
 ```
 
@@ -162,13 +151,14 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__Morph-Definition__
+__morph__
 
 ```xml
 <data source="litA">
@@ -186,13 +176,14 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__FIX-Definition__
+__fix__
 
 ```
 do map("litA")
@@ -216,13 +207,14 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__Morph-Definition__
+__morph__
 
 ```xml
 <data source="litA">
@@ -240,19 +232,18 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
 {litA: Alf}
 ```
 
-__FIX-Definition__
-
-TODO: How to do this in FIX? With or without `value:`
+__morph__
 
 ```
 do map("litA")
-  constant("cat")
+  constant(value: "cat")
 end
 ```
 
@@ -277,6 +268,7 @@ With attributes `format`, `timezone` and `language` you can create individual fo
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -301,6 +293,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -334,6 +327,7 @@ If you set the `end="0"` the remaining string will be provided.
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -358,6 +352,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -391,6 +386,7 @@ Not matching values will be passed on without changes.
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -415,6 +411,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -444,6 +441,7 @@ TODO: `replace` and `regexp` seem to have different ways in using groups with an
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -473,6 +471,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -507,6 +506,7 @@ TODO: Does `lookup` pass trough values that do not map even without `default`?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -535,6 +535,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -569,6 +570,7 @@ TODO: What is the `language` attribute doing?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -593,6 +595,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -626,6 +629,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -650,6 +654,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -684,6 +689,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -708,6 +714,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -748,6 +755,7 @@ TODO: swissbib report a bug: removeLeadingZeros="true" entfernte in unseren Test
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -773,6 +781,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -808,6 +817,7 @@ TODO: Are values that are not split passed on?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -832,6 +842,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -864,6 +875,7 @@ It is also possible to control the ISBN checkDigit with the attribute `verifyCec
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -888,6 +900,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -919,6 +932,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -944,6 +958,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -977,6 +992,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1002,6 +1018,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1035,6 +1052,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1059,6 +1077,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1104,6 +1123,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1128,6 +1148,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1169,6 +1190,7 @@ _________
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1196,6 +1218,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 
@@ -1204,6 +1227,7 @@ __input__
 ```
 
 __FIX-Definition__
+
 TODO: How to use it in FIX? Attributes with or without names? And how to state the `entity`-elements?
 
 ```
@@ -1229,6 +1253,7 @@ __output__
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1257,6 +1282,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 
@@ -1292,6 +1318,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1316,6 +1343,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1346,6 +1374,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1370,6 +1399,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1403,6 +1433,7 @@ TODO: Do they work with regex? Are they case-sensitive?
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1427,6 +1458,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1434,6 +1466,7 @@ __input__
 ```
 
 __FIX-Definition__
+
 TODO: How to use it in FIX? Attributes with or without names?
 
 ```
@@ -1468,6 +1501,7 @@ Tip: You can use two occurence filters after each other to send only a certain p
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1507,6 +1541,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1514,6 +1549,7 @@ __input__
 ```
 
 __FIX-Definition__
+
 TODO: How to use it in FIX? Attributes with or without names?
 
 ```
@@ -1538,6 +1574,7 @@ __output__
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1582,6 +1619,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1638,6 +1676,7 @@ __output__
 
 <details>
   <summary>Example <b>Morph</b></summary>
+
 __input__
 
 ```
@@ -1682,6 +1721,7 @@ __output__
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
@@ -1746,6 +1786,7 @@ TODO: How to use it in FIX? Attributes with or without names?
 
 <details>
   <summary>Example <b>FIX</b></summary>
+
 __input__
 
 ```
