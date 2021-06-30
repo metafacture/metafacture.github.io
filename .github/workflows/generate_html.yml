@@ -19,5 +19,5 @@ jobs:
       - name: Commit ide-extensions/index.html
         uses: EndBug/add-and-commit@v5
         with:
-          message: "Add newly generated extensions/index.html by GitHub Actions."
+          message: "Add newly generated ide-extensions/index.html by GitHub Actions."
           add: "ide-extensions/index.html --force"
