@@ -1,4 +1,4 @@
-name: Build extensions/index.html
+name: Build ide-extensions/index.html
 
 on: push
 
@@ -8,16 +8,16 @@ jobs:
     steps:
       - name: Get repo
         uses: actions/checkout@v2
-      - name: Generate extensions/index.html
+      - name: Generate ide-extensions/index.html
         uses: docker://pandoc/core:2.9
         with:
           args: >
-            --output=extensions/index.html
+            --output=ide-extensions/index.html
             --css=github-pandoc.css
             --standalone
-            extensions/index.md
-      - name: Commit extensions/index.html
+            ide-extensions/index.md
+      - name: Commit ide-extensions/index.html
         uses: EndBug/add-and-commit@v5
         with:
-          message: "Add newly generated extensions/index.html by GitHub Actions."
-          add: "extensions/index.html --force"
+          message: "Add newly generated ide-extensions/index.html by GitHub Actions."
+          add: "ide-extensions/index.html --force"
