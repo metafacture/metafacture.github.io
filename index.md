@@ -3,3 +3,5 @@
 ## Welcome
 
 Welcome to Metafacture.org!
+
+Metafacture is a toolkit for processing semi-structured data with a focus on library metadata. It provides a versatile set of tools for reading, writing and transforming data. Metafacture can be used as a stand-alone application or as a Java library in other applications. The name Metafacture is a portmanteau of the words meta data and manufacture.
