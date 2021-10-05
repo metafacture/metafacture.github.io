@@ -1,7 +1,5 @@
 % Metafacture IDE Extensions
 
-<img src="img/metafacture.png" alt="Metafacture" style="max-width:100%"/>
-
 ## Overview
 Here you will find different IDE extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. Both IDE extensions are aiming to support working with Fix and Flux by syntax highlighting, simple auto completion and validation of the Flux/Fix language.
 As IDE extensions are based on the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/), extensions and plugins for other IDEs than VS Code / Codium can easily be added in the future.
@@ -19,21 +17,21 @@ There are different ways to install extensions for VS Code / Codium.
 
 After installing the IDE extension to VS Code / Codium open a Flux file, for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill-to-oersi.flux). It should look like this:
 
-<img src="img/digill-to-oersi_flux.JPG" alt="Flux editor" style="max-width:100%"/>
+<img src="/img/digill-to-oersi_flux.JPG" alt="Flux editor" style="max-width:100%"/>
 
 If you delete for example a necessary bracket you will see in the Problems section that the extention detects problems with the Flux file:
 
-<img src="img/digill-to-oersi_flux_problem.JPG" alt="Flux editor with problems" style="max-width:100%"/>
+<img src="/img/digill-to-oersi_flux_problem.JPG" alt="Flux editor with problems" style="max-width:100%"/>
 
 ### Fix
 
 After installing the IDE extension to VS Code / Codium open a Flux file, for example [this one](https://gitlab.com/oersi/oersi-etl/-/raw/develop/data/production/digill.fix). It should look like this:
 
-<img src="img/digill_fix.JPG" alt="Fix editor" style="max-width:100%"/>
+<img src="/img/digill_fix.JPG" alt="Fix editor" style="max-width:100%"/>
 
 If you remove a closing `end` you will see in the Problems section that the extention detects the missing `end`:
 
-<img src="img/digill_fix_problem.JPG" alt="Fix editor with problems" style="max-width:100%"/>
+<img src="/img/digill_fix_problem.JPG" alt="Fix editor with problems" style="max-width:100%"/>
 
 ## GitHub
 
