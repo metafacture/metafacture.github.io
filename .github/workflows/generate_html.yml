@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Get repo
         uses: actions/checkout@v2
-        - name: Generate index.html
+      - name: Generate index.html
         uses: docker://pandoc/core:2.9
         with:
           args: >
