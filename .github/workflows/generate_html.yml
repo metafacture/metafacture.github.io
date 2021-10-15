@@ -17,6 +17,15 @@ jobs:
             --css=github-pandoc.css
             --standalone
             index.md
+      - name: Generate installation.html
+        uses: docker://pandoc/core:2.9
+        with:
+          args: >
+            --output=installation.html
+            --include-before-body=navigation.html
+            --css=github-pandoc.css
+            --standalone
+            installation.md
       - name: Generate ide-extensions/index.html
         uses: docker://pandoc/core:2.9
         with:
