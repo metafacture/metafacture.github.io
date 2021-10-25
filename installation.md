@@ -1,10 +1,10 @@
 % Installation manual
 
-# Getting started
+## Getting started
 
 You can either use Metafacture as a stand-alone application or include it as a Java library in your own projects.
 
-## Metafacture as a stand-alone application
+### Metafacture as a stand-alone application
 
 If you are only interested in running Flux scripts without doing any Java programming this is the way to go. The instructions assume that you are using a *nix-like shell.
 
@@ -28,7 +28,7 @@ If you are only interested in running Flux scripts without doing any Java progra
 The _examples_ folder contains many more examples which provide a good starting point for learning metafacture. If you have any questions please join our [mailing list](http://lists.dnb.de/mailman/listinfo/metafacture) or use our issue-based discussion forum over at [metafacture-documentation](https://github.com/metafacture/metafacture-documentation).
 
 
-## Using Metafacture as a Java libary
+### Using Metafacture as a Java libary
 
 If you want use Metafacture in your own Java projects all you need to add some dependencies to your project. As of Metafacture 5 the single metafacture-core package has been replaced with a number of domain-specific packages. You can find the list of packages on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.metafacture%22).
 
@@ -56,7 +56,7 @@ Our integration server automatically publishes successful builds of all branches
 TODO: Link to getting started tutorial
 -->
 
-# Building metafacture-core from source
+## Building metafacture-core from source
 
 Building metafacture-core from source is easy. All you need is git and JDK 8:
 
@@ -81,6 +81,6 @@ See [Code Quality and Style](https://github.com/metafacture/metafacture-core/wik
 TODO: Include a link to a page which explains how to write plugins
 -->
 
-# Stay updated
+## Stay updated
 
 For support and discussion join the [mailing list](http://lists.dnb.de/mailman/listinfo/metafacture).
