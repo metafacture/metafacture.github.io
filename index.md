@@ -1,6 +1,4 @@
-% Metafacture
-
-## Welcome
+% Welcome
 
 Welcome to Metafacture.org!
 
