@@ -16,6 +16,7 @@ jobs:
             --include-before-body=navigation.html
             --css=github-pandoc.css
             --standalone
+            --title-prefix="Metafacture"
             index.md
       - name: Generate installation.html
         uses: docker://pandoc/core:2.9
@@ -25,6 +26,7 @@ jobs:
             --include-before-body=navigation.html
             --css=github-pandoc.css
             --standalone
+            --title-prefix="Metafacture"
             installation.md
       - name: Generate ide-extensions/index.html
         uses: docker://pandoc/core:2.9
@@ -34,6 +36,7 @@ jobs:
             --include-before-body=navigation.html
             --css=../github-pandoc.css
             --standalone
+            --title-prefix="Metafacture"
             ide-extensions/index.md
       - name: Commit html files
         uses: EndBug/add-and-commit@v5
