@@ -1,4 +1,8 @@
-% Metafacture IDE Extensions
+---
+title: "IDE Extensions"
+header-includes:
+    <link rel="Metafacture Icon" type="image/x-icon" href="/img/metafacture-icon.png">
+---
 
 ## Overview
 Here you will find different IDE extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. Both IDE extensions are aiming to support working with Fix and Flux by syntax highlighting, simple auto completion and validation of the Flux/Fix language.
