@@ -23,7 +23,7 @@ After installing the IDE extension to VS Code / Codium open a Flux file, for exa
 
 <img src="/img/digill-to-oersi_flux.JPG" alt="Flux editor" style="max-width:100%"/>
 
-If you delete for example a necessary bracket you will see in the Problems section that the extention detects problems with the Flux file:
+If you delete for example a necessary bracket you will see in the Problems section that the extension detects problems with the Flux file:
 
 <img src="/img/digill-to-oersi_flux_problem.JPG" alt="Flux editor with problems" style="max-width:100%"/>
 
@@ -33,7 +33,7 @@ After installing the IDE extension to VS Code / Codium open a Flux file, for exa
 
 <img src="/img/digill_fix.JPG" alt="Fix editor" style="max-width:100%"/>
 
-If you remove a closing `end` you will see in the Problems section that the extention detects the missing `end`:
+If you remove a closing `end` you will see in the Problems section that the extension detects the missing `end`:
 
 <img src="/img/digill_fix_problem.JPG" alt="Fix editor with problems" style="max-width:100%"/>
 
