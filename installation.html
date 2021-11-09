@@ -12,68 +12,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="github-pandoc.css" />
   <!--[if lt IE 9]>
@@ -106,55 +44,6 @@
 <header id="title-block-header">
 <h1 class="title">Installation manual</h1>
 </header>
-<h2 id="getting-started">Getting started</h2>
-<p>You can either use Metafacture as a stand-alone application or include it as a Java library in your own projects.</p>
-<h3 id="metafacture-as-a-stand-alone-application">Metafacture as a stand-alone application</h3>
-<p>If you are only interested in running Flux scripts without doing any Java programming this is the way to go. The instructions assume that you are using a *nix-like shell.</p>
-<ol type="1">
-<li><p>Download the latest distribution package from the <a href="https://github.com/metafacture/metafacture-core/releases">metafacture-core/releases</a> page. Make sure that you do download a distribution package and <em>not</em> a source code package (the file name should include <em>-dist</em>).</p></li>
-<li><p>Extract the downloaded archive:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a>$ <span class="fu">tar</span> xzf metafacture-core-VERSION-dist.tar.gz</span></code></pre></div>
-<p>This will create a new directory containing a ready-to-use metafacture distribution.</p></li>
-<li><p>Change into the newly created directory:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a>$ <span class="bu">cd</span> metafacture-core-VERSION</span></code></pre></div></li>
-<li><p>Run one of the example scripts:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>$ <span class="ex">./flux.sh</span> examples/read/marc21/read-marc21.flux</span></code></pre></div>
-<p>This example will print a number of marc21 records on standard out.</p></li>
-</ol>
-<p>The <em>examples</em> folder contains many more examples which provide a good starting point for learning metafacture. If you have any questions please join our <a href="http://lists.dnb.de/mailman/listinfo/metafacture">mailing list</a> or use our issue-based discussion forum over at <a href="https://github.com/metafacture/metafacture-documentation">metafacture-documentation</a>.</p>
-<h3 id="using-metafacture-as-a-java-libary">Using Metafacture as a Java libary</h3>
-<p>If you want use Metafacture in your own Java projects all you need to add some dependencies to your project. As of Metafacture 5 the single metafacture-core package has been replaced with a number of domain-specific packages. You can find the list of packages on <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.metafacture%22">Maven Central</a>.</p>
-<p>Alternatively, you can simply guess the package names from the top-level folders in the source code repository – they are the same. For instance, if you want to use Metamorph in your project, simply add the following dependency to your <code>pom.xml</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;dependency&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">&lt;groupId&gt;</span>org.metafacture<span class="kw">&lt;/groupId&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">&lt;artifactId&gt;</span>metamorph<span class="kw">&lt;/artifactId&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">&lt;version&gt;</span>VERSION<span class="kw">&lt;/version&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">&lt;/dependency&gt;</span></span></code></pre></div>
-<p>or if Gradle is your build tool of choice use:</p>
-<pre class="groovy"><code>dependencies {
-    implementation &#39;org.metafacture:metamorph:VERSION&#39;
-}</code></pre>
-<p>Our integration server automatically publishes successful builds of all branches as snapshot versions on <a href="https://oss.sonatype.org/index.html#nexus-search;quick~metafacture">Sonatype OSS Repository</a>. The version number is derived from the branch name. Snapshot builds from the master branch always have the version “master-SNAPSHOT”.</p>
-<!--
-TODO: Link to getting started tutorial
--->
-<h2 id="building-metafacture-core-from-source">Building metafacture-core from source</h2>
-<p>Building metafacture-core from source is easy. All you need is git and JDK 8:</p>
-<ol type="1">
-<li>Clone the metafacture-core repository and change into the directory:</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a>$ <span class="fu">git</span> clone https://github.com/metafacture/metafacture-core.git</span>
-<span id="cb6-2"><a href="#cb6-2"></a>$ <span class="bu">cd</span> metafacture-core</span></code></pre></div>
-<ol start="2" type="1">
-<li>Invoke the gradle-wrapper to download Gradle and build metafacture-core (on Windows call <code>gradlew.bat install</code>):</li>
-</ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a>$ <span class="ex">./gradlew</span> install</span></code></pre></div>
-<p>The resulting distribution can be found in <code>metafacture-core/metafacture-runner/build/distributions/</code>.</p>
-<p>See <a href="https://github.com/metafacture/metafacture-core/wiki/Code-Quality-and-Style">Code Quality and Style</a> on the wiki for further information on the sources.</p>
-<!--
-TODO: Include a link to a page which explains how to write plugins
--->
-<h2 id="stay-updated">Stay updated</h2>
-<p>For support and discussion join the <a href="http://lists.dnb.de/mailman/listinfo/metafacture">mailing list</a>.</p>
+<p>See the <a href="https://github.com/metafacture/metafacture-core#getting-started">README</a> of how to install Metafacture.</p>
 </body>
 </html>
