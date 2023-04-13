@@ -42,4 +42,4 @@ jobs:
         uses: EndBug/add-and-commit@v5
         with:
           message: "Add newly generated html files by GitHub Actions."
-          add: "index.html installation.html ide-extensions/index.html --force"
+          add: "index.html getting-started.html ide-extensions/index.html --force"
