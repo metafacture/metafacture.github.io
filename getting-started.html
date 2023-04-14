@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Metafacture – Getting started</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="github-pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="Metafacture Icon" type="image/x-icon" href="/img/metafacture-icon.png">
+</head>
+<body>
+
+<img src="/img/metafacture.png" alt="Metafacture" style="max-width:100%"/>
+
+<center>
+    <b>
+        <a href="/index.html">Home</a>
+        &ensp;|&ensp;
+        <a href="/getting-started.html">Getting started</a>
+        &ensp;|&ensp;
+        <a href="https://github.com/metafacture/metafacture-documentation">Documentation</a>
+        &ensp;|&ensp;
+        <a href="/ide-extensions/index.html">IDE Extensions</a>
+        &ensp;|&ensp;
+        <a href="https://blog.metafacture.org">Blog</a>
+        &ensp;|&ensp;
+        <a href="https://metafacture.org/playground">Playground</a>
+        &ensp;&ensp;
+        </br>
+        <a href='https://openbiblio.social/@metafacture'><img src='/img/Mastodon.png'/></a>
+
+        <a href='https://twitter.com/metafacture'><img src='/img/Twitter.png'/></a>
+        <a href='https://github.com/metafacture'><img src='/img/GitHub.png'/></a>
+    </b>
+</center>
+<header id="title-block-header">
+<h1 class="title">Getting started</h1>
+</header>
+<h2 id="playground">Playground</h2>
+<p>The easiest way to get started with Metafacture is the Playground. Take a look at the <a href="https://metafacture.org/playground/?flux=PG_DATA%0A%7Cas-lines%0A%7Cdecode-formeta%0A%7Cfix%0A%7Cencode-xml%28rootTag%3D%22collection%22%29%0A%7Cprint%0A%3B&amp;fix=move_field%28_id%2C+id%29%0Amove_field%28a%2C+title%29%0Apaste%28author%2C+b.v%2C+b.n%2C+%27~aus%27%2C+c%29%0Aretain%28id%2C+title%2C+author%29&amp;data=1%7Ba%3A+Faust%2C+b+%7Bn%3A+Goethe%2C+v%3A+JW%7D%2C+c%3A+Weimar%7D%0A2%7Ba%3A+R%C3%A4uber%2C+b+%7Bn%3A+Schiller%2C+v%3A+F%7D%2C+c%3A+Weimar%7D&amp;active-editor=fix">first example</a> and run it by pressing the <img src="img/process.png" alt="“Process”" /> button. Check out the other examples (first button, <img src="img/load-exmples.png" alt="“Load Examples”" />) for different input sources, transformations, and output formats.</p>
+<p>For commands available in the Flux, see <a href="https://github.com/metafacture/metafacture-documentation/blob/master/flux-commands.md">the Flux commands documentation</a>.</p>
+<p>For functions and usage of the Fix, see <a href="https://github.com/metafacture/metafacture-fix#functions-and-cookbook">the Fix functions and cookbook</a>.</p>
+<h2 id="command-line">Command line</h2>
+<p>To use Metafacture as a command-line tool, download the latest metafix-runner from our <a href="https://github.com/metafacture/metafacture-fix/releases">releases page</a>. Extract the downloaded archive and change into the newly created directory (e.g. <code>cd metafacture-runner-0.4.0</code>). Run a Flux workflow with:</p>
+<p><code>$ ./bin/metafix-runner /path/to/your.flux</code> on Unix/Linux/Mac or <code>$ ./bin/metafix-runner.bat /path/to/your.flux</code> on Windows.</p>
+<p>To get started, you can export a workflow from the Playground (last button, <img src="img/export.png" alt="“Export Workflow”" />).</p>
+<p>To set up IDE support for editing your Flux and Fix files, see <a href="/ide-extensions/index.html">the IDE extensions page</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>For a complete introduction to Metafacture in German, check out the latest iteration of <a href="https://slides.lobid.org/2022-12-metafacture-workshop/#/">our Metafacture Workshop</a>. For different use cases, e.g. using Metafacture as a library, using the Morph language, and more, see <a href="https://github.com/metafacture/metafacture-documentation">our documentation collection</a>.</p>
+</body>
+</html>
