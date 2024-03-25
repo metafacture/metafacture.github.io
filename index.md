@@ -1,7 +1,7 @@
 ---
 title: "Welcome"
 header-includes:
-    <link rel="Metafacture Icon" type="image/x-icon" href="/img/metafacture-icon.png">
+    <link rel="Metafacture Icon" type="image/x-icon" href="./img/metafacture-icon.png">
 ---
 
 Welcome to Metafacture.org!
