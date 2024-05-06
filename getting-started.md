@@ -12,6 +12,8 @@ For commands available in the Flux, see [the Flux commands documentation](https:
 
 For functions and usage of the Fix, see [the Fix functions and cookbook](https://github.com/metafacture/metafacture-documentation/blob/master/Fix-function-and-Cookbook.md).
 
+For a tutorial, see [metafacture-tutorial](https://metafacture.github.io/metafacture-tutorial/).
+
 ## Command line
 
 To use Metafacture as a command-line tool, download the latest metafix-runner from our [releases page](https://github.com/metafacture/metafacture-fix/releases). Extract the downloaded archive and change into the newly created directory (e.g. `cd metafacture-runner-0.4.0`). Run a Flux workflow with:
