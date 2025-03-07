@@ -8,9 +8,9 @@ header-includes:
 
 The easiest way to get started with Metafacture is the Playground. Take a look at an [example](https://metafacture.org/playground/?example=encode-xml) and run it by pressing the !["Process"](img/process.png) button. Check out the other examples (first button, !["Load Examples"](img/load-exmples.png)) for different input sources, transformations, and output formats.
 
-For commands available in the Flux, see [the Flux commands documentation](https://github.com/metafacture/metafacture-documentation/blob/master/flux-commands.md).
+For commands available in the Flux, see [the Flux commands documentation](https://metafacture.org/metafacture-documentation/docs/flux/flux-commands.html).
 
-For functions and usage of the Fix, see [the Fix functions and cookbook](https://github.com/metafacture/metafacture-documentation/blob/master/Fix-function-and-Cookbook.md).
+For functions and usage of the Fix, see [the Fix functions](https://metafacture.org/metafacture-documentation/docs/fix/Fix-functions.html) and [cookbook](https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html#cookbook).
 
 For a tutorial, see [metafacture-tutorial](https://metafacture.github.io/metafacture-tutorial/).
 
@@ -55,9 +55,9 @@ Occasionally, we publish snapshot builds on [Sonatype OSS Repository](https://os
 
 ## Next steps
 
-Get familar with [FLUX](https://github.com/metafacture/metafacture-documentation/blob/master/Flux-User-Guide.md) and [FIX](https://github.com/metafacture/metafacture-documentation/blob/master/Fix-User-Guide.md). And try out some Metafacture workflows.
+Get familar with [FLUX](https://metafacture.org/metafacture-documentation/docs/flux/Flux-User-Guide.html) and [FIX](https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html). And try out some Metafacture workflows.
 
-If you plan to use Metafacture as a Java library or if you wish to add commands to Flux you should get familar with the [Framework](https://github.com/metafacture/metafacture-documentation/blob/master/Framework-User-Guide.md).
+If you plan to use Metafacture as a Java library or if you wish to add commands to Flux you should get familar with the [Framework](https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html).
 
 For a complete introduction to Metafacture in German, check out the latest iteration of [our Metafacture Workshop](https://slides.lobid.org/2022-12-metafacture-workshop/#/). 
-For different use cases, e.g. using Metafacture as a library, using the Morph language, and more, see [our documentation collection](https://github.com/metafacture/metafacture-documentation).
+For different use cases, e.g. using Metafacture as a library, using the Morph language, and more, see [our documentation collection](https://metafacture.org/metafacture-documentation/).
