@@ -59,5 +59,5 @@ Get familar with [FLUX](https://metafacture.org/metafacture-documentation/docs/f
 
 If you plan to use Metafacture as a Java library or if you wish to add commands to Flux you should get familar with the [Framework](https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html).
 
-For a complete introduction to Metafacture in German, check out the latest iteration of [our Metafacture Workshop](https://slides.lobid.org/2022-12-metafacture-workshop/#/). 
+For a complete introduction to Metafacture in German, check out the latest iteration of [our Metafacture Workshop](https://pad.lobid.org/p/2024-10-08-Bibliothekarische-Metadatenworkflows-mit-Metafacture-erstellen#/). 
 For different use cases, e.g. using Metafacture as a library, using the Morph language, and more, see [our documentation collection](https://metafacture.org/metafacture-documentation/).
