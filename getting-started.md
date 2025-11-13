@@ -31,7 +31,7 @@ Run a Flux workflow with:
 
 To get started, you can export a workflow from the Playground (last button, !["Export Workflow"](img/export.png)).
 
-To set up IDE support for editing your Flux and Fix files, see [the IDE extensions page](/ide-extensions/index.html).
+To set up IDE support for editing your Flux and Fix files, see [the IDE extensions page](/ide-extensions.html).
 
 ## Using Metafacture as a Java library
 
@@ -57,7 +57,7 @@ dependencies {
 }
 ```
 
-To use Fix you would declare `metafix` instead of `metafacture-io` as in the example above. Note that `metafix` is not published to maven central but only to [github releases](https://github.com/metafacture/metafacture-fix/releases).
+To use Fix you would declare `metafix` instead of `metafacture-io` as in the example above. Since the beginning of Metafacture Fix is part of Metafacture Core and therefore also available via Maven Central.
 
 Occasionally, we publish snapshot builds on [Sonatype OSS Repository](https://oss.sonatype.org/index.html#nexus-search;gav~org.metafacture~~~~~kw,versionexpand). The version number is derived from the branch name. Snapshot builds from the master branch always have the version `master-SNAPSHOT`. We also provide sometimes pre releases as github packages.
 
