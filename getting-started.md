@@ -16,7 +16,7 @@ For a tutorial, see [metafacture-tutorial](https://metafacture.github.io/metafac
 
 ## Command line
 
-To use Metafacture as a command-line tool, download the latest metafix-runner from our [releases page](https://github.com/metafacture/metafacture-fix/releases). Extract the downloaded archive and change into the newly created directory (e.g. `cd metafacture-runner-0.4.0`). Run a Flux workflow with:
+To use Metafacture as a command-line tool, download the latest Metafacture release from our [releases page](https://github.com/metafacture/metafacture-core/releases). Extract the downloaded archive and change into the newly created directory (e.g. `cd metafacture-runner-0.4.0`). Run a Flux workflow with:
 
 `$ ./bin/metafix-runner /path/to/your.flux` on Unix/Linux/Mac or
 `$ ./bin/metafix-runner.bat /path/to/your.flux` on Windows.
