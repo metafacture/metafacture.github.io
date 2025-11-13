@@ -113,8 +113,12 @@
 <p>For functions and usage of the Fix, see <a href="https://metafacture.org/metafacture-documentation/docs/fix/Fix-functions.html">the Fix functions</a> and <a href="https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html#cookbook">cookbook</a>.</p>
 <p>For a tutorial, see <a href="https://metafacture.github.io/metafacture-tutorial/">metafacture-tutorial</a>.</p>
 <h2 id="command-line">Command line</h2>
-<p>To use Metafacture as a command-line tool, download the latest Metafacture release from our <a href="https://github.com/metafacture/metafacture-core/releases">releases page</a>. Extract the downloaded archive and change into the newly created directory (e.g. <code>cd metafacture-runner-0.4.0</code>). Run a Flux workflow with:</p>
-<p><code>$ ./bin/metafix-runner /path/to/your.flux</code> on Unix/Linux/Mac or <code>$ ./bin/metafix-runner.bat /path/to/your.flux</code> on Windows.</p>
+<p>Check if Java 11 or higher is installed with java -version in your terminal. If not, install Java 11 or higher.</p>
+<p>To use Metafacture as a command-line tool, download the latest Metafacture release from our <a href="https://github.com/metafacture/metafacture-core/releases">releases page</a>.</p>
+<p>Download metafacture-core-$VERSION-dist.tar.gz or the zip version and extract the archive to your choosen folder. In the folder you find the flux.bat and flux.sh</p>
+<p>The code below assumes you moved the resulting folder to your home directory and renamed it to “metafacture”.</p>
+<p>Run a Flux workflow with:</p>
+<p><code>$ ./metafacture/flux.sh /path/to/your.flux</code> on Unix/Linux/Mac or <code>$ ./metafacture/flux.bat /path/to/your.flux</code> on Windows.</p>
 <p>To get started, you can export a workflow from the Playground (last button, <img src="img/export.png" alt="“Export Workflow”" />).</p>
 <p>To set up IDE support for editing your Flux and Fix files, see <a href="/ide-extensions/index.html">the IDE extensions page</a>.</p>
 <h2 id="using-metafacture-as-a-java-library">Using Metafacture as a Java library</h2>
