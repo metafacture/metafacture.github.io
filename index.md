@@ -14,6 +14,6 @@ At its heart Metafacture is a framework for implementing modules for metadata pr
 
 Originally, Metafacture was developed as part of the Culturegraph platform but it is developed independently now and used by others, too: [see who uses Metafacture](https://github.com/metafacture/metafacture-core/wiki/Who-uses-Metafacture).
 
-Also [Metafacture Fix](https://github.com/metafacture/metafacture-fix), a non-xml Catmandu inspired language for specifying transformations, is being developed that is not stream-based but operates at record level.
+Also [Metafacture Fix]([https://github.com/metafacture/metafacture-fix](https://github.com/metafacture/metafacture-core/tree/master?tab=readme-ov-file#metafacture-fix)), a non-xml Catmandu inspired language for specifying transformations, is being developed that is not stream-based but operates at record level. Since the beginning of 2025 Metafacture Fix was merged into Metafacture Core and is available as default Metafacture Core library.
 
 Metafacture is maintained by the Team [Offene Infrastruktur by hbz](https://www.hbz-nrw.de/produkte/linked-open-data).
