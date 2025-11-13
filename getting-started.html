@@ -120,7 +120,7 @@
 <p>Run a Flux workflow with:</p>
 <p><code>$ ./metafacture/flux.sh /path/to/your.flux</code> on Unix/Linux/Mac or <code>$ ./metafacture/flux.bat /path/to/your.flux</code> on Windows.</p>
 <p>To get started, you can export a workflow from the Playground (last button, <img src="img/export.png" alt="“Export Workflow”" />).</p>
-<p>To set up IDE support for editing your Flux and Fix files, see <a href="/ide-extensions/index.html">the IDE extensions page</a>.</p>
+<p>To set up IDE support for editing your Flux and Fix files, see <a href="/ide-extensions.html">the IDE extensions page</a>.</p>
 <h2 id="using-metafacture-as-a-java-library">Using Metafacture as a Java library</h2>
 <p>If you want to use Metafacture in your own Java projects all you need is to add some dependencies to your project. As of Metafacture 5, the single metafacture-core package has been replaced with a number of domain-specific packages. You can find the list of packages on <a href="https://search.maven.org/search?q=g:org.metafacture">Maven Central</a>.</p>
 <p>Alternatively, you can simply guess the package names from the top-level folders in the source code repository – they are the same.</p>
@@ -134,7 +134,7 @@
 <pre class="groovy"><code>dependencies {
     implementation &#39;org.metafacture:metafacture-io:$VERSION&#39;
 }</code></pre>
-<p>To use Fix you would declare <code>metafix</code> instead of <code>metafacture-io</code> as in the example above. Note that <code>metafix</code> is not published to maven central but only to <a href="https://github.com/metafacture/metafacture-fix/releases">github releases</a>.</p>
+<p>To use Fix you would declare <code>metafix</code> instead of <code>metafacture-io</code> as in the example above. Since the beginning of Metafacture Fix is part of Metafacture Core and therefore also available via Maven Central.</p>
 <p>Occasionally, we publish snapshot builds on <a href="https://oss.sonatype.org/index.html#nexus-search;gav~org.metafacture~~~~~kw,versionexpand">Sonatype OSS Repository</a>. The version number is derived from the branch name. Snapshot builds from the master branch always have the version <code>master-SNAPSHOT</code>. We also provide sometimes pre releases as github packages.</p>
 <h2 id="next-steps">Next steps</h2>
 <p>Get familar with <a href="https://metafacture.org/metafacture-documentation/docs/flux/Flux-User-Guide.html">FLUX</a> and <a href="https://metafacture.org/metafacture-documentation/docs/fix/Fix-User-Guide.html">FIX</a>. And try out some Metafacture workflows.</p>
