@@ -24,7 +24,7 @@ After installing the IDE extension to VS Code / Codium open a Flux file, for exa
 
 <img src="./img/digill-to-oersi_flux.JPG" alt="Flux editor" style="max-width:100%"/>
 
-When you start typing you will see suggestions containing flux commands. When you press Ctrl + Space or click on a command you will get the documentation provided for the chosen command. Hitting enter will insert the command.
+When you start typing you will see suggestions containing Flux commands. When you press Ctrl + Space or click on a command you will get the documentation provided for the chosen command. Hitting enter will insert the command.
 
 <img src="./img/digill-to-oersi_flux_autosuggestion.png" alt="Flux editor with autosuggestion" style="max-width:100%"/>
 
