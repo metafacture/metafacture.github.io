@@ -5,7 +5,7 @@ header-includes:
 ---
 
 ## Overview
-Here you will find different IDE extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. Both IDE extensions are aiming to support working with Fix and Flux by syntax highlighting, simple auto completion and validation of the Flux/Fix language.
+Here you will find different IDE extensions and plugins related to the [Metafacture project](https://metafacture.org) in order to support working with the framework. At the current state we provide VS Code / Codium Extensions for the Fix language and the Flux language. The IDE extensions are aiming to support working with Fix and Flux in different ways. The Flux extension supports syntax highlighting and auto completion, the Fix extension supports syntax highlighting and simple validation of the Fix language.
 As IDE extensions are based on the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/), extensions and plugins for other IDEs than VS Code / Codium can easily be added in the future.
 
 ## Setup a VS Code / Codium extension
@@ -24,9 +24,9 @@ After installing the IDE extension to VS Code / Codium open a Flux file, for exa
 
 <img src="./img/digill-to-oersi_flux.JPG" alt="Flux editor" style="max-width:100%"/>
 
-If you delete for example a necessary bracket you will see in the Problems section that the extension detects problems with the Flux file:
+When you start typing you will see suggestions containing Flux commands. When you press Ctrl + Space or click on a command you will get the documentation provided for the chosen command. Hitting enter will insert the command.
 
-<img src="./img/digill-to-oersi_flux_problem.JPG" alt="Flux editor with problems" style="max-width:100%"/>
+<img src="./img/digill-to-oersi_flux_autosuggestion.png" alt="Flux editor with autosuggestion" style="max-width:100%"/>
 
 ### Fix
 
@@ -40,4 +40,4 @@ If you remove a closing `end` you will see in the Problems section that the exte
 
 ## GitHub
 
-To report issues, see the code, and contribute to the projects, visit: [Fix Repository](https://github.com/metafacture/metafacture-fix), [Flux Repository](https://github.com/metafacture/metafacture-flux).
+To report issues, see the code, and contribute to the project, visit: [Metafacture Language Server Repository](https://github.com/metafacture/metafacture-lsp). The project [Metafacture Fix](https://github.com/metafacture/metafacture-fix) contains the code for the Fix extension but this is an outdated approach. The new approach will also be in the [Metafacture Language Server Repository](https://github.com/metafacture/metafacture-lsp).
