@@ -40,4 +40,4 @@ If you remove a closing `end` you will see in the Problems section that the exte
 
 ## GitHub
 
-To report issues, see the code, and contribute to the project, visit: [Metafacure Language Server Repository](https://github.com/metafacture/metafacture-lsp). The project [Metafacute Fix](https://github.com/metafacture/metafacture-fix) contains the code for the Fix extension but this is an outdated approach. The new approach will be also in the [Metafacure Language Server Repository](https://github.com/metafacture/metafacture-lsp).
+To report issues, see the code, and contribute to the project, visit: [Metafacture Language Server Repository](https://github.com/metafacture/metafacture-lsp). The project [Metafacture Fix](https://github.com/metafacture/metafacture-fix) contains the code for the Fix extension but this is an outdated approach. The new approach will also be in the [Metafacture Language Server Repository](https://github.com/metafacture/metafacture-lsp).
