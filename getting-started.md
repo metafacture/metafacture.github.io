@@ -16,7 +16,7 @@ For a tutorial, see [metafacture-tutorial](https://metafacture.github.io/metafac
 
 ## Command line
 
-Check if Java 11 or higher is installed with `java -version` in your terminal. If not, install Java 11 or higher.
+Check if Java 21 or higher is installed with `java -version` in your terminal. If not, install Java 21 or higher.
 
 To use Metafacture as a command-line tool, download the latest Metafacture release from our [releases page](https://github.com/metafacture/metafacture-core/releases).
 
@@ -26,8 +26,8 @@ The code below assumes you moved the resulting folder to your home directory and
 
 Run a Flux workflow with:
 
-`$ ./metafacture/flux.sh /path/to/your.flux` on Unix/Linux/Mac or
-`$ ./metafacture/flux.bat /path/to/your.flux` on Windows.
+`$ ./metafacture/flux.sh -f /path/to/your.flux` on Unix/Linux/Mac or
+`$ ./metafacture/flux.bat -f /path/to/your.flux` on Windows.
 
 To get started, you can export a workflow from the Playground (last button, !["Export Workflow"](img/export.png)).
 
